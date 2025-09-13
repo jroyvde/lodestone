@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 // Import functions
 import { toneInit, playGrind, setGrindVol } from './toneSetup'
@@ -11,6 +11,7 @@ import { Prism } from "./Prism"
 import 'normalize.css'
 import './App.css'
 import './PrismScreen.css'
+import "./mapScreen.css"
 import './Prism.css'
 
 // Intro Modal
@@ -29,15 +30,17 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
 
 // Screen 0: Prism
 const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntroModal }) => {
-    // Enter the Prism and transition to the Map Screen
-    const enterPrism = async () => {
-      console.log("Entering the Prism")
-      // Zoom in
-      await wait(1000)
-      // Overlay
+  // Enter the Prism and transition to the Map Screen
+  const enterPrism = async () => {
+    const r = document.querySelector(":root")
+    console.log("Entering the Prism")
+    // Zoom in
+    r.style.setProperty("--prism-scale", "2.0")
+    await wait(1000)
+    // Overlay
 
-      // Set Current Screen to the Map Screen (1)
-      changeScreen(1)
+    // Set Current Screen to the Map Screen (1)
+    changeScreen(1)
   }
 
   setGrindVol(-6)
@@ -63,13 +66,17 @@ const MapScreen = ({ changeScreen, currentScreen }) => {
 
   return(
     <>
-      <div id="mapDisplay">
+      <div className="mapControls">
+          
+      </div>
+      <div className="mapScreenContainer">
+        <div className="mapViewport">
 
+        </div>
+        <div className="bottomBar">
+          <Prism onClick={exitPrism} currentScreen={currentScreen}/>
+        </div>
       </div>
-      <div id="mapControls">
-        
-      </div>
-      <Prism onClick={exitPrism} currentScreen={currentScreen}/>
     </>
   )
 }
@@ -86,10 +93,8 @@ const ViewScreen = ({ changeScreen, currentScreen }) => {
 
 // App Component
 const App = () => {
-  const [currentScreen, setCurrentScreen] = useState(0)
-
-  // Whether or not the Intro Modal should be rendered
-  const [showIntroModal, setShowIntroModal] = useState(true)
+  const [currentScreen, setCurrentScreen] = useState(0)       // Integer representing the current Screen
+  const [showIntroModal, setShowIntroModal] = useState(true)  // Whether or not the Intro Modal should be rendered
 
   const changeScreen = (screenInt) => {
     setCurrentScreen(screenInt)
