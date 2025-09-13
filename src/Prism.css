@@ -1,0 +1,77 @@
+:root {
+    --prism-width: 300px;
+    --prism-height: 600px;
+    --prism-depth: 150px;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    height: 100vh;
+}
+
+#prism-container {
+    margin: auto;
+    perspective: 600px;
+    width: var(--prism-width);
+    height: 0px;
+    margin: 100px auto;
+}
+
+#prism {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0s ease-in-out;
+}
+
+.face {
+    background-color: rgba(15, 10, 45, 1);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.front, .back {
+    width: var(--prism-width);
+    height: var(--prism-height);
+}
+
+.front {
+    transform: translateY(calc(var(--prism-height) * -0.5)) translateZ(calc(var(--prism-depth) * 0.5));
+}
+
+.back {
+    transform: rotateY(180deg) translateY(calc(var(--prism-height) * -0.5)) translateZ(calc(var(--prism-depth) * 0.5));
+}
+
+.top, .bottom {
+    background-color: rgba(3, 3, 32, 1);
+    width: var(--prism-width);
+    height: var(--prism-depth);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(calc(var(--prism-height) * 0.5 + (var(--prism-depth) / 2)));
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--prism-height) * 0.5 - (var(--prism-depth) / 2)));
+}
+
+.left, .right {
+    background-color: rgba(24, 11, 54, 1);
+    width: var(--prism-depth);
+    height: var(--prism-height)
+}
+
+.left {
+    transform: rotateY(-90deg) translateY(calc(var(--prism-height) * -0.5)) translateZ(calc(var(--prism-depth) * 0.5));
+}
+
+.right {
+    transform: rotateY(90deg) translateY(calc(var(--prism-height) * -0.5)) translateZ(calc(var(--prism-depth) * -0.5 + var(--prism-width)));
+}
