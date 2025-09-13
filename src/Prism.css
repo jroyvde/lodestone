@@ -1,7 +1,8 @@
 :root {
-    --prism-width: 300px;
-    --prism-height: 600px;
-    --prism-depth: 150px;
+    --prism-scale: 1;
+    --prism-width: calc(300px * var(--prism-scale));
+    --prism-height: calc(600px * var(--prism-scale));
+    --prism-depth: calc(150px * var(--prism-scale));
 }
 
 main {
@@ -25,6 +26,7 @@ main {
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 0s ease-in-out;
+    cursor: pointer;
 }
 
 .face {

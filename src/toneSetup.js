@@ -71,7 +71,7 @@ const grindCrush = new Tone.BitCrusher({
 const grindFilter = new Tone.Filter(200, "bandpass")
 
 const grindVolume = new Tone.Volume({
-    volume: -6,
+    volume: -60,
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,6 @@ export const playGrind = () => {
   grind.triggerAttack()
 }
 
-export const stopGrind = () => {
-  grind.triggerRelease()
+export const setGrindVol = (newVol) => {
+  grindVolume.volume.rampTo(newVol, 2)
 }

@@ -1,15 +1,35 @@
 import { useState } from 'react'
 
-import { toneInit, playGrind, stopGrind } from './toneSetup'
+// Import functions
+import { toneInit, playGrind, setGrindVol } from './toneSetup'
 import { wait } from "./helperFunctions"
 
+// Import components
+import { Prism } from "./Prism"
+
+// Import stylesheets
 import 'normalize.css'
 import './App.css'
 import './PrismScreen.css'
 import './Prism.css'
 
+// Intro Modal
+const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
+
+  if (showIntroModal) {
+    return(
+      <div id="intro-modal-background" onClick={ () => { setShowIntroModal(false) ; toneInit() ; playGrind() } }>
+        <div id="intro-modal">
+          <p>Click to begin</p>
+        </div>
+      </div>
+    )
+  }
+}
+
 // Screen 0: Prism
-const PrismScreen = ({ changeScreen }) => {
+const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntroModal }) => {
+    // Enter the Prism and transition to the Map Screen
     const enterPrism = async () => {
       console.log("Entering the Prism")
       // Zoom in
@@ -20,91 +40,56 @@ const PrismScreen = ({ changeScreen }) => {
       changeScreen(1)
   }
 
+  setGrindVol(-6)
+
   return(
     <>
-      <IntroModal />
-      <Prism enterPrism={enterPrism}/>
+      <IntroModal showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal} />
+      <Prism onClick={enterPrism} currentScreen={currentScreen}/>
     </>
   )
 }
 
-const IntroModal = () => {
-  // Whether or not the modal should be rendered
-  const [renderModal, setRenderModal] = useState(true)
-
-  if (renderModal) {
-    return(
-      <div id="intro-modal-background" onClick={ () => { setRenderModal(false) ; toneInit() ; playGrind() } }>
-        <div id="intro-modal">
-          <p>Click to begin</p>
-        </div>
-      </div>
-    )
-  }
-}
-
-const Prism = ({ enterPrism }) => {
-  const speedX = 0
-  const speedY = 0.05
-  const speedZ = 0
-
-  // Rotate the Prism once the page is loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    const prism = document.querySelector("#prism")
-
-    let angleX = 0
-    let angleY = 0
-    let angleZ = 0
-
-    function rotatePrism() {
-      angleX += speedX
-      angleY += speedY
-      angleZ += speedZ
-      prism.style.transform =
-          `rotateX(${angleX}deg) 
-          rotateY(${angleY}deg)
-          rotateZ(${angleZ}deg)`
-      requestAnimationFrame(rotatePrism)
-    }
-
-    rotatePrism()
-  })
-
-  // Enter the Prism and transition to the Map Screen
-
-
-  return(
-    <div id="prism-container">
-      <div id="prism" onClick={ () => enterPrism() }>
-        <div className="face front" />
-        <div className="face back" />
-        <div className="face top" />
-        <div className="face bottom" />
-        <div className="face left" />
-        <div className="face right" />
-      </div>
-    </div>
-  )
-}
-
 // Screen 1: Map
-const MapScreen = () => {
-  stopGrind()
+const MapScreen = ({ changeScreen, currentScreen }) => {
+  // Return to the Prism Screen
+  const exitPrism = async () => {
+    console.log("Returning to the Prism Screen")
+    await wait(1000)
+    changeScreen(0)
+  }
+  
+  setGrindVol(-12)
 
   return(
     <>
+      <div id="mapDisplay">
 
+      </div>
+      <div id="mapControls">
+        
+      </div>
+      <Prism onClick={exitPrism} currentScreen={currentScreen}/>
     </>
   )
 }
 
 // Screen 2: View
-const ViewScreen = () => {
+const ViewScreen = ({ changeScreen, currentScreen }) => {
 
+  return(
+    <>
+
+    </>
+  )
 }
 
+// App Component
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState(0)
+
+  // Whether or not the Intro Modal should be rendered
+  const [showIntroModal, setShowIntroModal] = useState(true)
 
   const changeScreen = (screenInt) => {
     setCurrentScreen(screenInt)
@@ -115,19 +100,19 @@ const App = () => {
     case 0:
           return(
             <main>
-              <PrismScreen changeScreen={changeScreen}/>
+              <PrismScreen changeScreen={changeScreen} currentScreen={currentScreen} showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal}/>
             </main>
           )
     case 1:
           return(
             <main>
-              <MapScreen changeScreen={changeScreen}/>
+              <MapScreen changeScreen={changeScreen} currentScreen={currentScreen}/>
             </main>
           )
     case 2:
           return(
             <main>
-              <ViewScreen changeScreen={changeScreen}/>
+              <ViewScreen changeScreen={changeScreen} currentScreen={currentScreen}/>
             </main>
           )
   }
