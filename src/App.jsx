@@ -35,11 +35,11 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
 const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntroModal }) => {
   // Enter the Prism and transition to the Map Screen
   const enterPrism = async () => {
-    const r = document.querySelector(":root")
+    const r = document.querySelector("#prism")
     console.log("Entering the Prism")
     // Zoom in
-    r.style.setProperty("--prism-scale", "2.0")
-    await wait(1000)
+    r.style.setProperty("scale", "3.0")
+    await wait(5000)
     // Overlay
 
     // Set Current Screen to the Map Screen (1)
@@ -67,12 +67,13 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 
   // Update the selected Place (normally via arrows, with a parameter of 1 for next or -1 for previous)
   const changePlace = (offset) => {
-    // Find out what the new Place should be
+    // Find out what the new Place's index should be
     let oldPlaceIndex = places.findIndex(place => place === selectedPlace)
     let newPlaceIndex = oldPlaceIndex + offset
+    // Correct for over/under-shooting the amount of valid Places
     if (newPlaceIndex >= places.length) { newPlaceIndex = 0 }
     if (newPlaceIndex < 0) { newPlaceIndex = places.length-1 }
-    // Set the new Place index
+    // Set the new Place
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
     // Play sound
@@ -82,6 +83,10 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 
     
   }
+
+  const enterPlace = (place) => {
+    console.log(`Entering: ${place.name}`)
+  }
   
   setGrindVol(-12)
 
@@ -90,8 +95,13 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 
   return(
     <>
+      <div className="mapTitle">
+        <h1>{selectedPlace.name}</h1>
+        <h2>{selectedPlace.location}</h2>
+      </div>
       <div className="mapControls">
           <img src="/src/assets/left.png" alt="left" onClick={() => changePlace(-1)}></img>
+          <img src="/src/assets/go.png" alt="go" onClick={() => enterPlace(selectedPlace)}></img>
           <img src="/src/assets/right.png" alt="right" onClick={() => changePlace(1)}></img>
       </div>
       <div className="mapScreenContainer">
@@ -107,7 +117,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 }
 
 // Screen 2: View
-const ViewScreen = ({ changeScreen, currentScreen }) => {
+const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
 
   return(
     <>
@@ -118,9 +128,9 @@ const ViewScreen = ({ changeScreen, currentScreen }) => {
 
 // App Component
 const App = () => {
-  const [currentScreen, setCurrentScreen] = useState(0)       // Integer representing the current Screen
-  const [showIntroModal, setShowIntroModal] = useState(true)  // Whether or not the Intro Modal should be rendered
-  const [selectedPlace, setSelectedPlace] = useState(places[0])       // The Place currently highlighted/selected on the Map Screen
+  const [currentScreen, setCurrentScreen] = useState(0)         // Integer representing the current Screen
+  const [showIntroModal, setShowIntroModal] = useState(true)    // Whether or not the Intro Modal should be rendered
+  const [selectedPlace, setSelectedPlace] = useState(places[0]) // The Place currently highlighted/selected on the Map Screen
 
   const changeScreen = (screenInt) => {
     setCurrentScreen(screenInt)

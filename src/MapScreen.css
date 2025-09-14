@@ -19,6 +19,27 @@
 
 }
 
+.mapTitle {
+    width: 50%;
+    position: absolute;
+    top: 10%;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mapTitle > h1 {
+    font-size: 8rem;
+    margin: 1rem 1rem 1rem 1rem;
+}
+
+.mapTitle > h2 {
+    font-size: 4rem;
+    margin: 1rem;
+}
+
 .mapControls {
     width: 25%;
     position: absolute;
