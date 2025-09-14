@@ -54,7 +54,7 @@ export const Prism = ({ currentScreen, onClick }) => {
 
     return(
         <div id="prism-container">
-            <div id="prism" ref={prismRef} onClick={ () => onClick() }>
+            <div id="prism" ref={prismRef} onClick={onClick}>
                 <div className="face front" />
                 <div className="face back" />
                 <div className="face top" />

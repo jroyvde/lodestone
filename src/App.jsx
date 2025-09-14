@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react'
 import { toneInit, playGrind, setGrindVol } from './toneSetup'
 import { wait } from "./helperFunctions"
 
+// Import Places
+import { places } from "./places"
+
 // Import components
 import { Prism } from "./Prism"
 
@@ -54,20 +57,42 @@ const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntro
 }
 
 // Screen 1: Map
-const MapScreen = ({ changeScreen, currentScreen }) => {
+const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlace }) => {
   // Return to the Prism Screen
   const exitPrism = async () => {
     console.log("Returning to the Prism Screen")
     await wait(1000)
     changeScreen(0)
   }
+
+  // Update the selected Place (normally via arrows, with a parameter of 1 for next or -1 for previous)
+  const changePlace = (offset) => {
+    // Find out what the new Place should be
+    let oldPlaceIndex = places.findIndex(place => place === selectedPlace)
+    let newPlaceIndex = oldPlaceIndex + offset
+    if (newPlaceIndex >= places.length) { newPlaceIndex = 0 }
+    if (newPlaceIndex < 0) { newPlaceIndex = places.length-1 }
+    // Set the new Place index
+    setSelectedPlace(places[newPlaceIndex])
+    console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
+    // Play sound
+
+    // Process visual changes
+    // Get the Document :root so we can access CSS variables
+
+    
+  }
   
   setGrindVol(-12)
+
+    const r = document.querySelector(":root")
+    r.style.setProperty("--map-image", `url("${selectedPlace.photo}")`)
 
   return(
     <>
       <div className="mapControls">
-          
+          <img src="/src/assets/left.png" alt="left" onClick={() => changePlace(-1)}></img>
+          <img src="/src/assets/right.png" alt="right" onClick={() => changePlace(1)}></img>
       </div>
       <div className="mapScreenContainer">
         <div className="mapViewport">
@@ -95,6 +120,7 @@ const ViewScreen = ({ changeScreen, currentScreen }) => {
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState(0)       // Integer representing the current Screen
   const [showIntroModal, setShowIntroModal] = useState(true)  // Whether or not the Intro Modal should be rendered
+  const [selectedPlace, setSelectedPlace] = useState(places[0])       // The Place currently highlighted/selected on the Map Screen
 
   const changeScreen = (screenInt) => {
     setCurrentScreen(screenInt)
@@ -111,7 +137,7 @@ const App = () => {
     case 1:
           return(
             <main>
-              <MapScreen changeScreen={changeScreen} currentScreen={currentScreen}/>
+              <MapScreen changeScreen={changeScreen} currentScreen={currentScreen} selectedPlace={selectedPlace} setSelectedPlace={setSelectedPlace}/>
             </main>
           )
     case 2:
