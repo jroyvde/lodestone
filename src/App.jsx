@@ -157,19 +157,44 @@ const App = () => {
     console.log(`Changing to screen: ${screenInt}`)
   }
 
+  // Function: Calculate the "proximity" values for each place, and store them in the object
+  const calcProximities = () => {
+    // Calculate the distance between the user and the place
+    places.forEach(place => {
+      const latDiff = Math.abs(place.lat - coordsRef.current.latitude)
+      const longDiff = Math.abs(place.long - coordsRef.current.longitude)
+      place.distance = (latDiff + longDiff) / 2
+    })
+
+    // Sort a copy of places from closest to furthest
+    const sorted = [...places].sort((a, b) => a.distance - b.distance)
+
+    // Assign proximity: 1 for closest, 0 for farthest, evenly spaced
+    const n = sorted.length
+    sorted.forEach((place, idx) => {
+      place.proximity = n === 1 ? 1 : 1 - idx / (n - 1)
+    })
+  }
+
   // Try and get the user's location
-  navigator.geolocation.getCurrentPosition((position) => {
-    // On success
-    coordsRef.current = position.coords
-    console.log(`User coords: ${JSON.stringify(coordsRef.current)}`)
-  }, (positionError) => {
-    // On fail
-    coordsRef.current = {
-      latitude: -37.8,
-      longitude: 145,
-    }
-    console.log(`Using default coords: ${JSON.stringify(coordsRef.current)}`)
-  })
+  if (coordsRef.current === null) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      // On success
+      coordsRef.current = position.coords
+      console.log(`User coords: ${JSON.stringify(coordsRef.current)}`)
+      // Calculate proximity values
+      calcProximities()
+    }, (positionError) => {
+      // On fail
+      coordsRef.current = {
+        latitude: -37.8,
+        longitude: 145,
+      }
+      console.log(`Using default coords: ${JSON.stringify(coordsRef.current)}`)
+      // Calculate proximity values
+      calcProximities()
+    })
+  }
 
   switch (currentScreen) {
     case 0:
