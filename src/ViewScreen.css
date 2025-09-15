@@ -17,6 +17,7 @@
 
 #marker > img {
     height: 10rem;
+    cursor: pointer;
 }
 
 #viewControls {
