@@ -40,7 +40,7 @@ const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntro
     const prismOverlay = document.querySelector("#prism-overlay")
     console.log("Entering the Prism")
     // Zoom in
-    prism.style.setProperty("scale", "3.0")
+    prism.style.setProperty("scale", "10.0")
     prismOverlay.style.setProperty("opacity", "1.0")
     await wait(5000)
     // Overlay
@@ -129,6 +129,8 @@ const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
     const viewScreenContainer = document.querySelector("#view-screen-container")
     viewScreenContainer.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
   }, [selectedPlace])
+
+  setGrindVol(-18)
   
   return(
     <>
@@ -148,10 +150,26 @@ const App = () => {
   const [showIntroModal, setShowIntroModal] = useState(true)    // Whether or not the Intro Modal should be rendered
   const [selectedPlace, setSelectedPlace] = useState(places[0]) // The Place currently highlighted/selected on the Map Screen
 
+  const coordsRef = useRef(null)
+
   const changeScreen = (screenInt) => {
     setCurrentScreen(screenInt)
     console.log(`Changing to screen: ${screenInt}`)
   }
+
+  // Try and get the user's location
+  navigator.geolocation.getCurrentPosition((position) => {
+    // On success
+    coordsRef.current = position.coords
+    console.log(`User coords: ${JSON.stringify(coordsRef.current)}`)
+  }, (positionError) => {
+    // On fail
+    coordsRef.current = {
+      latitude: -37.8,
+      longitude: 145,
+    }
+    console.log(`Using default coords: ${JSON.stringify(coordsRef.current)}`)
+  })
 
   switch (currentScreen) {
     case 0:

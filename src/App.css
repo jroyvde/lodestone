@@ -1,4 +1,5 @@
 :root {
+  --prism-base-color: rgba(15, 10, 45, 1);
   --prism-glow-color: white;
 }
 

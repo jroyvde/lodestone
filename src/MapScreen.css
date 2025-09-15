@@ -24,20 +24,24 @@
     position: absolute;
     top: 10%;
     color: white;
+    
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
 .mapTitle > h1 {
     font-size: 8rem;
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem;
+    background-color: black;
 }
 
 .mapTitle > h2 {
     font-size: 4rem;
     margin: 1rem;
+    background-color: black;
 }
 
 .mapControls {
@@ -47,6 +51,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
 }
 
 .mapControls > img {
