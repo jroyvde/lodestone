@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Import functions
-import { toneInit, ambience, playGrind, setGrindVol, playAmbience, stopAmbience, playSound } from './toneSetup'
-import { wait } from "./helperFunctions"
+import { toneInit, ambience, ambienceCrush, playGrind, setGrindVol, playAmbience, stopAmbience, playSound } from './toneSetup'
+import { wait, lerp } from "./helperFunctions"
 
 // Import Places
 import { places } from "./places"
@@ -85,6 +85,10 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
     // Set the correct ambient sound in Tone
     ambience.load(places[newPlaceIndex].ambience)
+    // Set the correct bitcrushing based on proximity
+    const crushBits = lerp(6, 10, places[newPlaceIndex].proximity)
+    ambienceCrush.bits.value = crushBits
+    console.log(`New bits: ${crushBits}`)
   }
 
   const enterPlace = (place) => {

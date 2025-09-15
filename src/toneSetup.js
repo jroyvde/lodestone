@@ -85,8 +85,8 @@ const grindVolume = new Tone.Volume({
 
 // For "ambience"
 
-const ambienceCrush = new Tone.BitCrusher({
-    bits: 16,
+export const ambienceCrush = new Tone.BitCrusher({
+    bits: 10,
 })
 
 const ambienceVolume = new Tone.Volume({
