@@ -7,6 +7,7 @@
 // distance:    Calculated distance, based on latitude and longitude
 // proximity:   Averaged value between 0 and 1, based on distance (in relation to all other Places)
 // photo:       Main image displayed on the View Screen
+// markerPos:   Position of the "Marker" on the photo image
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 const botanicalGardens = {
@@ -17,7 +18,11 @@ const botanicalGardens = {
     distance: null,
     proximity: null,
     photo: "/src/assets/photo0.jpg",
-    mapImg: "/src/assets/map0.png",
+    markerPos: {
+        x: 0,
+        y: 0,
+    },
+    mapImg: "/src/assets/map0.webp",
 }
 
 const blackBox = {
@@ -28,7 +33,11 @@ const blackBox = {
     distance: null,
     proximity: null,
     photo: "/src/assets/photo1.jpg",
-    mapImg: "/src/assets/map1.png",
+    markerPos: {
+        x: 0,
+        y: 0,
+    },
+    mapImg: "/src/assets/map1.webp",
 }
 
 const oldArtsBuilding = {
@@ -39,7 +48,11 @@ const oldArtsBuilding = {
     distance: null,
     proximity: null,
     photo: "/src/assets/photo2.jpg",
-    mapImg: "/src/assets/map2.png",
+    markerPos: {
+        x: 0,
+        y: 0,
+    },
+    mapImg: "/src/assets/map2.webp",
 }
 
 export const places = [ botanicalGardens, blackBox, oldArtsBuilding ]
