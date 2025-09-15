@@ -82,16 +82,9 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     // Set the new Place
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
-    // Play sound
-    playSound("nav")
-    // Process visual changes
-    // Get the Document :root so we can access CSS variables
-
-    
   }
 
   const enterPlace = (place) => {
-    playSound("go")
     console.log(`Entering: ${place.name}`)
     changeScreen(2)
   }
@@ -108,9 +101,9 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
         <h2>{selectedPlace.location}</h2>
       </div>
       <div className="mapControls">
-          <img src="/src/assets/left.png" alt="left" onClick={() => changePlace(-1)}></img>
-          <img src="/src/assets/go.png" alt="go" onClick={() => enterPlace(selectedPlace)}></img>
-          <img src="/src/assets/right.png" alt="right" onClick={() => changePlace(1)}></img>
+          <img src="/src/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
+          <img src="/src/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
+          <img src="/src/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
       <div className="mapScreenContainer">
         <div className="mapViewport">
