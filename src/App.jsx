@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Import functions
-import { toneInit, playGrind, setGrindVol } from './toneSetup'
+import { toneInit, playGrind, setGrindVol, playSound } from './toneSetup'
 import { wait } from "./helperFunctions"
 
 // Import Places
@@ -83,7 +83,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
     // Play sound
-
+    playSound("nav")
     // Process visual changes
     // Get the Document :root so we can access CSS variables
 
@@ -91,6 +91,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
   }
 
   const enterPlace = (place) => {
+    playSound("go")
     console.log(`Entering: ${place.name}`)
     changeScreen(2)
   }
@@ -134,8 +135,11 @@ const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
   
   return(
     <>
+      <div id="marker">
+        <img src="/src/assets/marker.png" alt="marker" onClick={() => playSound("marker")} />
+      </div>
       <div id="viewControls">
-        <img src="/src/assets/back.png" alt="left" onClick={() => changeScreen(1)}></img>
+        <img src="/src/assets/back.png" alt="left" onClick={() => { playSound("back") ; changeScreen(1) }} />
       </div>
       <div id="view-screen-container">
 

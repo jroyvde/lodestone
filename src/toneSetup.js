@@ -96,3 +96,24 @@ export const playGrind = () => {
 export const setGrindVol = (newVol) => {
   grindVolume.volume.rampTo(newVol, 2)
 }
+
+export const playBackSound = () => {
+
+}
+
+export const playSound = (sound) => {
+  switch (sound) {
+    case "nav":
+      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      break
+    case "go":
+      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      break
+    case "back":
+      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      break
+    case "marker":
+      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      break
+  }
+}

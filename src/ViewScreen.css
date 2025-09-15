@@ -11,6 +11,14 @@
     image-rendering: pixelated;
 }
 
+#marker {
+    position: absolute;
+}
+
+#marker > img {
+    height: 10rem;
+}
+
 #viewControls {
     width: 25%;
     position: absolute;
