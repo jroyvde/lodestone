@@ -5,7 +5,8 @@ const botanicalGardens = {
     location: "Melbourne, Australia",
     lat: 0,
     long: 0,
-    photo: "/src/assets/map0.png",
+    photo: "/src/assets/photo0.jpg",
+    mapImg: "/src/assets/map0.png",
 }
 
 const blackBox = {
@@ -13,7 +14,8 @@ const blackBox = {
     location: "Melbourne, Australia",
     lat: 0,
     long: 0,
-    photo: "/src/assets/map1.png",
+    photo: "/src/assets/photo1.jpg",
+    mapImg: "/src/assets/map1.png",
 }
 
 const oldArtsBuilding = {
@@ -21,7 +23,8 @@ const oldArtsBuilding = {
     location: "Parkville, Australia",
     lat: 0,
     long: 0,
-    photo: "/src/assets/map2.png",
+    photo: "/src/assets/photo2.jpg",
+    mapImg: "/src/assets/map2.png",
 }
 
 export const places = [ botanicalGardens, blackBox, oldArtsBuilding ]

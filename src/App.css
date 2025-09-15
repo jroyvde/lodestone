@@ -1,3 +1,7 @@
+:root {
+  --prism-glow-color: white;
+}
+
 main {
   display: flex;
   flex-direction: column;

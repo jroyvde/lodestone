@@ -11,11 +11,12 @@ import { places } from "./places"
 import { Prism } from "./Prism"
 
 // Import stylesheets
-import 'normalize.css'
-import './App.css'
-import './PrismScreen.css'
-import "./mapScreen.css"
-import './Prism.css'
+import "normalize.css"
+import "./App.css"
+import "./PrismScreen.css"
+import "./MapScreen.css"
+import "./ViewScreen.css"
+import "./Prism.css"
 
 // Intro Modal
 const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
@@ -35,10 +36,12 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
 const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntroModal }) => {
   // Enter the Prism and transition to the Map Screen
   const enterPrism = async () => {
-    const r = document.querySelector("#prism")
+    const prism = document.querySelector("#prism")
+    const prismOverlay = document.querySelector("#prism-overlay")
     console.log("Entering the Prism")
     // Zoom in
-    r.style.setProperty("scale", "3.0")
+    prism.style.setProperty("scale", "3.0")
+    prismOverlay.style.setProperty("opacity", "1.0")
     await wait(5000)
     // Overlay
 
@@ -51,6 +54,7 @@ const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntro
   return(
     <>
       <IntroModal showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal} />
+      <div id="prism-overlay"></div>
       <Prism onClick={enterPrism} currentScreen={currentScreen}/>
     </>
   )
@@ -61,7 +65,9 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
   // Return to the Prism Screen
   const exitPrism = async () => {
     console.log("Returning to the Prism Screen")
-    await wait(1000)
+    // Play sound
+
+    // Change screen
     changeScreen(0)
   }
 
@@ -86,12 +92,13 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 
   const enterPlace = (place) => {
     console.log(`Entering: ${place.name}`)
+    changeScreen(2)
   }
   
   setGrindVol(-12)
 
-    const r = document.querySelector(":root")
-    r.style.setProperty("--map-image", `url("${selectedPlace.photo}")`)
+  const r = document.querySelector(":root")
+  r.style.setProperty("--map-image", `url("${selectedPlace.mapImg}")`)
 
   return(
     <>
@@ -118,10 +125,19 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 
 // Screen 2: View
 const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
-
+  useEffect(() => {
+    const viewScreenContainer = document.querySelector("#view-screen-container")
+    viewScreenContainer.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
+  }, [selectedPlace])
+  
   return(
     <>
+      <div id="viewControls">
+        <img src="/src/assets/back.png" alt="left" onClick={() => changeScreen(1)}></img>
+      </div>
+      <div id="view-screen-container">
 
+      </div>
     </>
   )
 }
@@ -153,7 +169,7 @@ const App = () => {
     case 2:
           return(
             <main>
-              <ViewScreen changeScreen={changeScreen} currentScreen={currentScreen}/>
+              <ViewScreen changeScreen={changeScreen} currentScreen={currentScreen} selectedPlace={selectedPlace}/>
             </main>
           )
   }

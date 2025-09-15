@@ -3,7 +3,7 @@
     --prism-width: calc(300px * var(--prism-scale));
     --prism-height: calc(600px * var(--prism-scale));
     --prism-depth: calc(150px * var(--prism-scale));
-    --prism-glow-color: white;
+
 }
 
 #prism-container {
