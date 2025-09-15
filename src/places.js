@@ -8,6 +8,7 @@
 // proximity:   Averaged value between 0 and 1, based on distance (in relation to all other Places)
 // photo:       Main image displayed on the View Screen
 // markerPos:   Position of the "Marker" on the photo image
+// ambience:    Ambience audio
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 const botanicalGardens = {
@@ -22,6 +23,7 @@ const botanicalGardens = {
         x: 0,
         y: 0,
     },
+    ambience: "/src/assets/ambience0.opus",
     mapImg: "/src/assets/map0.webp",
 }
 
@@ -37,6 +39,7 @@ const blackBox = {
         x: 0,
         y: 0,
     },
+    ambience: "/src/assets/ambience1.opus",
     mapImg: "/src/assets/map1.webp",
 }
 
@@ -52,6 +55,7 @@ const oldArtsBuilding = {
         x: 0,
         y: 0,
     },
+    ambience: "/src/assets/ambience2.opus",
     mapImg: "/src/assets/map2.webp",
 }
 

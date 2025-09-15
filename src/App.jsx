@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Import functions
-import { toneInit, playGrind, setGrindVol, playSound } from './toneSetup'
+import { toneInit, ambience, playGrind, setGrindVol, playAmbience, stopAmbience, playSound } from './toneSetup'
 import { wait } from "./helperFunctions"
 
 // Import Places
@@ -50,6 +50,7 @@ const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntro
   }
 
   setGrindVol(-6)
+  stopAmbience()
 
   return(
     <>
@@ -82,6 +83,8 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     // Set the new Place
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
+    // Set the correct ambient sound in Tone
+    ambience.load(places[newPlaceIndex].ambience)
   }
 
   const enterPlace = (place) => {
@@ -90,6 +93,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
   }
   
   setGrindVol(-12)
+  stopAmbience()
 
   const r = document.querySelector(":root")
   r.style.setProperty("--map-image", `url("${selectedPlace.mapImg}")`)
@@ -124,7 +128,12 @@ const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
     viewScreenContainer.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
   }, [selectedPlace])
 
-  setGrindVol(-18)
+  useEffect(() => {
+    setGrindVol(-24)
+
+    stopAmbience()
+    playAmbience()
+  }, [])
   
   return(
     <>

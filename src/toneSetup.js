@@ -40,7 +40,16 @@ const sampler = new Tone.Sampler({
         D2: "mel_low_d.wav",
         C3: "four.m4a",
     },
-    baseUrl: "./assets/audioSamples/"
+    baseUrl: "./assets/audioSamples/",
+})
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////// Player
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const ambience = new Tone.Player({
+  url: "/src/assets/ambience0.opus",
+  loop: true,
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +83,16 @@ const grindVolume = new Tone.Volume({
     volume: -60,
 })
 
+// For "ambience"
+
+const ambienceCrush = new Tone.BitCrusher({
+    bits: 16,
+})
+
+const ambienceVolume = new Tone.Volume({
+    volume: 0,
+})
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,6 +106,7 @@ export const toneInit = () => {
   // The sampler above must be uncommented for this to work, as well as the declaration on line 3 of keyboardController.js
   // sampler.chain(filter, distortion, meter, Tone.Destination)
   grind.chain(grindPitch, grindFilter, grindCrush, grindVolume, Tone.getDestination())
+  ambience.chain(ambienceCrush, ambienceVolume, Tone.getDestination())
 }
 
 export const playGrind = () => {
@@ -97,8 +117,12 @@ export const setGrindVol = (newVol) => {
   grindVolume.volume.rampTo(newVol, 2)
 }
 
-export const playBackSound = () => {
+export const playAmbience = () => {
+  ambience.start()
+}
 
+export const stopAmbience = () => {
+  ambience.stop()
 }
 
 export const playSound = (sound) => {
