@@ -48,6 +48,12 @@
     background-color: black;
 }
 
+.mapTitle > h3 {
+    font-size: 2rem;
+    margin: 1rem;
+    background-color: black;
+}
+
 .mapControls {
     width: 25%;
     position: absolute;

@@ -127,6 +127,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
+        <h3>PROXIMITY: {selectedPlace.proximity * 100}%</h3>
       </div>
       <div className="mapControls">
           <img src="/src/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
