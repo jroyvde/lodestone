@@ -18,6 +18,12 @@ const polySynth = new Tone.PolySynth(Tone.Synth, {
   },
 })
 
+const boop = new Tone.Synth({
+  oscillator: {
+    type: "triangle",
+  },
+})
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Noise Generators
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +35,18 @@ const grind = new Tone.NoiseSynth({
     decay: 0.1,
     sustain: 1.0,
   },
+})
+
+const trans = new Tone.NoiseSynth({
+  noise: {
+    type: "white",
+  },
+  envelope: {
+    attack: 2.0,
+    decay: 0.1,
+    sustain: 1.0,
+    release: 2.0
+  }
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,6 +85,9 @@ const reverb = new Tone.Reverb(2)
 const meter = new Tone.Meter()
 meter.smoothing = 0.1
 
+// For "boop"
+
+
 // For "grind"
 
 const grindPitch = new Tone.PitchShift({
@@ -81,6 +102,16 @@ const grindFilter = new Tone.Filter(200, "bandpass")
 
 const grindVolume = new Tone.Volume({
     volume: -60,
+})
+
+// For "trans"
+
+const transCrush = new Tone.BitCrusher({
+    bits: 8,
+})
+
+const transVolume = new Tone.Volume({
+    volume: -24,
 })
 
 // For "ambience"
@@ -105,7 +136,9 @@ export const toneInit = () => {
   // This is an alternative statement if the sampler is instead chosen : the only difference is the variable name
   // The sampler above must be uncommented for this to work, as well as the declaration on line 3 of keyboardController.js
   // sampler.chain(filter, distortion, meter, Tone.Destination)
+  boop.chain(Tone.getDestination())
   grind.chain(grindPitch, grindFilter, grindCrush, grindVolume, Tone.getDestination())
+  trans.chain(transCrush, transVolume, Tone.getDestination())
   ambience.chain(ambienceCrush, ambienceVolume, Tone.getDestination())
 }
 
@@ -115,6 +148,14 @@ export const playGrind = () => {
 
 export const setGrindVol = (newVol) => {
   grindVolume.volume.rampTo(newVol, 2)
+}
+
+export const playTransNoise = () => {
+  trans.triggerAttack()
+}
+
+export const stopTransNoise = () => {
+  trans.triggerRelease()
 }
 
 export const playAmbience = () => {
@@ -127,17 +168,20 @@ export const stopAmbience = () => {
 
 export const playSound = (sound) => {
   switch (sound) {
+    case "enter":
+      boop.triggerAttackRelease("B4", "16n")    // Placeholder
+      break
     case "nav":
-      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      boop.triggerAttackRelease("C4", "16n")    // Placeholder
       break
     case "go":
-      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      boop.triggerAttackRelease("B4", "16n")    // Placeholder
       break
     case "back":
-      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      boop.triggerAttackRelease("E3", "16n")    // Placeholder
       break
     case "marker":
-      polySynth.triggerAttackRelease("C4", "8n")    // Placeholder
+      boop.triggerAttackRelease("C4", "16n")    // Placeholder
       break
   }
 }

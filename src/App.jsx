@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Import functions
-import { toneInit, ambience, ambienceCrush, playGrind, setGrindVol, playAmbience, stopAmbience, playSound } from './toneSetup'
+import { toneInit, ambience, ambienceCrush, playGrind, setGrindVol, playAmbience, stopAmbience, playSound, playTransNoise, stopTransNoise } from './toneSetup'
 import { wait, lerp } from "./helperFunctions"
 
 // Import Places
@@ -45,11 +45,15 @@ const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, 
     // Zoom in
     prism.style.setProperty("scale", "10.0")
     prismOverlay.style.setProperty("opacity", "1.0")
+    // Play sound
+    playSound("enter")
+    playTransNoise()
     await wait(5000)
     // Set Current Screen to the Map Screen (1)
     changeScreen(1)
   }
 
+  stopTransNoise()
   setGrindVol(-6)
   stopAmbience()
 
@@ -77,6 +81,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     console.log("Returning to the Prism Screen")
     // Play sound
     playSound("back")
+    playTransNoise()
     // Change overlay color, then turn it on
     setOverlayColor("var(--prism-base-color)")
     setOverlayActive(true)
@@ -128,6 +133,8 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
                       : "var(--prism-base-color)")                // Default
     // Turn off the overlay
     setOverlayActive(false)
+    // Stop transition sound
+    stopTransNoise()
     // Restore normal zoom if zoomed in
     document.querySelector("main").style.setProperty("scale", "1.0")
   }, [])
