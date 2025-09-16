@@ -18,13 +18,13 @@ const botanicalGardens = {
     long: 144.971,
     distance: null,
     proximity: null,
-    photo: "/src/assets/photo0.webp",
+    photo: "/assets/photo0.webp",
     markerPos: {
         x: 215,
         y: 565,
     },
-    ambience: "/src/assets/ambience0.opus",
-    mapImg: "/src/assets/map0.webp",
+    ambience: "/assets/ambience0.opus",
+    mapImg: "/assets/map0.webp",
 }
 
 const blackBox = {
@@ -34,13 +34,13 @@ const blackBox = {
     long: 144.964,
     distance: null,
     proximity: null,
-    photo: "/src/assets/photo1.webp",
+    photo: "/assets/photo1.webp",
     markerPos: {
         x: 700,
         y: 795,
     },
-    ambience: "/src/assets/ambience1.opus",
-    mapImg: "/src/assets/map1.webp",
+    ambience: "/assets/ambience1.opus",
+    mapImg: "/assets/map1.webp",
 }
 
 const oldArtsBuilding = {
@@ -50,13 +50,13 @@ const oldArtsBuilding = {
     long: 144.960,
     distance: null,
     proximity: null,
-    photo: "/src/assets/photo2.webp",
+    photo: "/assets/photo2.webp",
     markerPos: {
         x: 380,
         y: 530,
     },
-    ambience: "/src/assets/ambience2.opus",
-    mapImg: "/src/assets/map2.webp",
+    ambience: "/assets/ambience2.opus",
+    mapImg: "/assets/map2.webp",
 }
 
 export const places = [ botanicalGardens, blackBox, oldArtsBuilding ]

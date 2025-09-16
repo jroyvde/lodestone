@@ -152,9 +152,9 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
         <h3>PROXIMITY: {selectedPlace.proximity * 100}%</h3>
       </div>
       <div className="mapControls">
-          <img src="/src/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
-          <img src="/src/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
-          <img src="/src/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
+          <img src="/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
+          <img src="/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
+          <img src="/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
       <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapImg}")` }}>
         <div className="mapViewport">
@@ -202,11 +202,11 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         }}
        />
       <div id="viewControls">
-        <img src="/src/assets/back.png" alt="left" onClick={() => { playSound("back") ; returnToMapScreen() }} />
+        <img src="/assets/back.png" alt="left" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
         <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
-          <img id="marker" src="/src/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
+          <img id="marker" src="/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
               left: `${(selectedPlace.markerPos.x / 1200) * 100}%`,
               top: `${(selectedPlace.markerPos.y / 900) * 100}%`,
             }} />
