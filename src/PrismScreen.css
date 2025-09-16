@@ -12,11 +12,16 @@
 }
 
 #intro-modal {
+    width: 80rem;
     font-family: "Share Tech Mono", monospace;
     font-weight: 400;
     font-style: normal;
-    font-size: 8rem;
+    font-size: 4rem;
     color: white;
+}
+
+#intro-modal > .smaller {
+    font-size: 2rem;
 }
 
 #prism-screen-overlay {
