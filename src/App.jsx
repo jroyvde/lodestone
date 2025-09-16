@@ -115,7 +115,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   // Function: Enter the selected Place, proceeding to the View Screen
   const enterPlace = async (place) => {
     console.log(`Entering: ${place.name}`)
-    document.querySelector("main").style.setProperty("scale", "10.0")
+    document.querySelector("main").style.setProperty("scale", "15.0")
     setOverlayColor("black")
     setOverlayActive("true")
     await wait(1000)
