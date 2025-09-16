@@ -66,7 +66,7 @@ const sampler = new Tone.Sampler({
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const ambience = new Tone.Player({
-  url: "/src/assets/ambience0.opus",
+  url: "/src/assets/ambience0.webm",
   loop: true,
 })
 
@@ -159,11 +159,15 @@ export const stopTransNoise = () => {
 }
 
 export const playAmbience = () => {
-  ambience.start()
+  if (ambience.state === "stopped") {
+    ambience.start()
+  }
 }
 
 export const stopAmbience = () => {
-  ambience.stop()
+  if (ambience.state === "started") {
+    ambience.stop()
+  }
 }
 
 export const playSound = (sound) => {

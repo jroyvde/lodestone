@@ -23,7 +23,7 @@ const botanicalGardens = {
         x: 215,
         y: 565,
     },
-    ambience: "/assets/ambience0.opus",
+    ambience: "/assets/ambience0.webm",
     mapImg: "/assets/map0.webp",
 }
 
@@ -39,7 +39,7 @@ const blackBox = {
         x: 700,
         y: 795,
     },
-    ambience: "/assets/ambience1.opus",
+    ambience: "/assets/ambience1.webm",
     mapImg: "/assets/map1.webp",
 }
 
@@ -55,7 +55,7 @@ const oldArtsBuilding = {
         x: 380,
         y: 530,
     },
-    ambience: "/assets/ambience2.opus",
+    ambience: "/assets/ambience2.webm",
     mapImg: "/assets/map2.webp",
 }
 

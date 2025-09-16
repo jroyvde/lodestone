@@ -191,7 +191,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
   }, [])
 
   setGrindVol(-24)  // Set volume of grinding sound
-  stopAmbience()    // Stop View Screen ambience if playing
+  //stopAmbience()    // Stop View Screen ambience if playing
   playAmbience()    // Start playing the new ambience
   
   return(
