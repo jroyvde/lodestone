@@ -12,7 +12,7 @@
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 const botanicalGardens = {
-    name: "Botanical Gardens",
+    name: "Royal Botanic Gardens Victoria",
     location: "Melbourne, Australia",
     lat: -37.825,
     long: 144.971,
@@ -28,7 +28,7 @@ const botanicalGardens = {
 }
 
 const blackBox = {
-    name: "Black Box",
+    name: "Building 22",
     location: "Melbourne, Australia",
     lat: -37.809,
     long: 144.964,

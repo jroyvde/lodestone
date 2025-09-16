@@ -46,14 +46,17 @@ const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, 
     prism.style.setProperty("scale", "10.0")
     prismOverlay.style.setProperty("opacity", "1.0")
     await wait(5000)
-    // Overlay
-
     // Set Current Screen to the Map Screen (1)
     changeScreen(1)
   }
 
   setGrindVol(-6)
   stopAmbience()
+
+  // Restore normal zoom if zoomed in
+  useEffect(() => {
+    document.querySelector("main").style.setProperty("scale", "1.0")
+  })
 
   return(
     <>
@@ -67,13 +70,21 @@ const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, 
 // Screen 1: Map
 const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, setSelectedPlace }) => {
   const [overlayActive, setOverlayActive] = useState(true)
+  const [overlayColor, setOverlayColor] = useState("var(--prism-base-color)")
 
   // Function: Return to the Prism Screen
   const exitPrism = async () => {
     console.log("Returning to the Prism Screen")
     // Play sound
-
-    // Change screen
+    playSound("back")
+    // Change overlay color, then turn it on
+    setOverlayColor("var(--prism-base-color)")
+    setOverlayActive(true)
+    // Wait
+    await wait(1000)
+    document.querySelector("main").style.setProperty("scale", "10.0")
+    await wait(1000)
+    // Change Screen
     changeScreen(0)
   }
 
@@ -97,24 +108,28 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   }
 
   // Function: Enter the selected Place, proceeding to the View Screen
-  const enterPlace = (place) => {
+  const enterPlace = async (place) => {
     console.log(`Entering: ${place.name}`)
+    document.querySelector("main").style.setProperty("scale", "10.0")
+    setOverlayColor("black")
+    setOverlayActive("true")
+    await wait(1000)
     changeScreen(2)
   }
 
   setGrindVol(-12)  // Set volume of grinding sound
   stopAmbience()    // Stop View Screen ambience if playing
 
-  // Decide transition overlay color based on previous screen
-  const overlayColor = prevScreen === 0 ? "var(--prism-base-color)" // From Prism Screen
-                      : prevScreen === 2 ? "rgba(0,0,0,1)"        // From View Screen
-                      : "var(--prism-base-color)"                   // Default
-
   // Play the transition-in effect
   useEffect(() => {
-    // const timer = setTimeout(() => setOverlayActive(false), 1000)
-    // return () => clearTimeout(timer)
+    // Decide transition overlay color based on previous screen
+    setOverlayColor (prevScreen === 0 ? "var(--prism-base-color)" // From Prism Screen
+                      : prevScreen === 2 ? "rgba(0,0,0,1)"      // From View Screen
+                      : "var(--prism-base-color)")                // Default
+    // Turn off the overlay
     setOverlayActive(false)
+    // Restore normal zoom if zoomed in
+    document.querySelector("main").style.setProperty("scale", "1.0")
   }, [])
   
   return(
@@ -152,15 +167,18 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
 
   const returnToMapScreen = async () => {
     // Do animations
-    
+    setOverlayActive("true")
     // Wait
-    // await wait(2000)
+    await wait(1000)
+    document.querySelector("main").style.setProperty("scale", "10.0")
+    await wait(1000)
     // Change Screen
     changeScreen(1)
   }
 
   // Play the transition-in effect
   useEffect(() => {
+    document.querySelector("main").style.setProperty("scale", "1.0")
     const timer = setTimeout(() => setOverlayActive(false), 1000)
     return () => clearTimeout(timer)
   }, [])
