@@ -33,11 +33,11 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
 }
 
 // Screen 0: Prism
-const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntroModal }) => {
+const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, setShowIntroModal }) => {
   // Enter the Prism and transition to the Map Screen
   const enterPrism = async () => {
     const prism = document.querySelector("#prism")
-    const prismOverlay = document.querySelector("#prism-overlay")
+    const prismOverlay = document.querySelector("#prism-screen-overlay")
     console.log("Entering the Prism")
     // Zoom in
     prism.style.setProperty("scale", "10.0")
@@ -55,15 +55,17 @@ const PrismScreen = ({ changeScreen, currentScreen, showIntroModal, setShowIntro
   return(
     <>
       <IntroModal showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal} />
-      <div id="prism-overlay"></div>
+      <div id="prism-screen-overlay"></div>
       <Prism onClick={enterPrism} currentScreen={currentScreen}/>
     </>
   )
 }
 
 // Screen 1: Map
-const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlace }) => {
-  // Return to the Prism Screen
+const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, setSelectedPlace }) => {
+  const [overlayActive, setOverlayActive] = useState(true)
+
+  // Function: Return to the Prism Screen
   const exitPrism = async () => {
     console.log("Returning to the Prism Screen")
     // Play sound
@@ -72,7 +74,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     changeScreen(0)
   }
 
-  // Update the selected Place (normally via arrows, with a parameter of 1 for next or -1 for previous)
+  // Function: Update the selected Place (normally via arrows, with a parameter of 1 for next or -1 for previous)
   const changePlace = (offset) => {
     // Find out what the new Place's index should be
     let oldPlaceIndex = places.findIndex(place => place === selectedPlace)
@@ -91,19 +93,34 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
     console.log(`New bits: ${crushBits}`)
   }
 
+  // Function: Enter the selected Place, proceeding to the View Screen
   const enterPlace = (place) => {
     console.log(`Entering: ${place.name}`)
     changeScreen(2)
   }
+
+  setGrindVol(-12)  // Set volume of grinding sound
+  stopAmbience()    // Stop View Screen ambience if playing
+
+  // Decide transition overlay color based on previous screen
+  const overlayColor = prevScreen === 0 ? "var(--prism-base-color)" // From Prism Screen
+                      : prevScreen === 2 ? "rgba(0,0,0,1)"        // From View Screen
+                      : "var(--prism-base-color)"                   // Default
+
+  // Play the transition-in effect
+  useEffect(() => {
+    // const timer = setTimeout(() => setOverlayActive(false), 1000)
+    // return () => clearTimeout(timer)
+    setOverlayActive(false)
+  }, [])
   
-  setGrindVol(-12)
-  stopAmbience()
-
-  const r = document.querySelector(":root")
-  r.style.setProperty("--map-image", `url("${selectedPlace.mapImg}")`)
-
   return(
     <>
+      <div id="map-screen-overlay" style={{
+        backgroundColor: overlayColor,
+        opacity: overlayActive ? 1 : 0,
+        }}
+       />
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
@@ -113,7 +130,7 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
           <img src="/src/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
           <img src="/src/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
-      <div className="mapScreenContainer">
+      <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapImg}")` }}>
         <div className="mapViewport">
 
         </div>
@@ -126,27 +143,40 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 }
 
 // Screen 2: View
-const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
-  useEffect(() => {
-    const photoElement = document.querySelector("#photo")
-    photoElement.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
-  }, [selectedPlace])
+const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) => {
+  const [overlayActive, setOverlayActive] = useState(true)
 
-  useEffect(() => {
-    setGrindVol(-24)
+  const returnToMapScreen = async () => {
+    // Do animations
+    
+    // Wait
+    // await wait(2000)
+    // Change Screen
+    changeScreen(1)
+  }
 
-    stopAmbience()
-    playAmbience()
+  // Play the transition-in effect
+  useEffect(() => {
+    const timer = setTimeout(() => setOverlayActive(false), 1000)
+    return () => clearTimeout(timer)
   }, [])
+
+  setGrindVol(-24)  // Set volume of grinding sound
+  stopAmbience()    // Stop View Screen ambience if playing
+  playAmbience()    // Start playing the new ambience
   
   return(
     <>
-
+      <div id="view-screen-overlay" style={{
+          backgroundColor: "black",
+          opacity: overlayActive ? 1 : 0,
+        }}
+       />
       <div id="viewControls">
-        <img src="/src/assets/back.png" alt="left" onClick={() => { playSound("back") ; changeScreen(1) }} />
+        <img src="/src/assets/back.png" alt="left" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
-        <div id="photo">
+        <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
           <img id="marker" src="/src/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
               left: `${(selectedPlace.markerPos.x / 1200) * 100}%`,
               top: `${(selectedPlace.markerPos.y / 900) * 100}%`,
@@ -159,13 +189,15 @@ const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
 
 // App Component
 const App = () => {
-  const [currentScreen, setCurrentScreen] = useState(0)         // Integer representing the current Screen
-  const [showIntroModal, setShowIntroModal] = useState(true)    // Whether or not the Intro Modal should be rendered
-  const [selectedPlace, setSelectedPlace] = useState(places[0]) // The Place currently highlighted/selected on the Map Screen
+  const [currentScreen, setCurrentScreen] = useState(0)            // Integer representing the current Screen
+  const [prevScreen, setPrevScreen] = useState(null)               // Integer representing the previous Screen (Used for transitions)
+  const [showIntroModal, setShowIntroModal] = useState(true)       // Whether or not the Intro Modal should be rendered
+  const [selectedPlace, setSelectedPlace] = useState(places[0])    // The Place currently highlighted/selected on the Map Screen
 
-  const coordsRef = useRef(null)
+  const coordsRef = useRef(null)  // Store the user's coordinates
 
   const changeScreen = (screenInt) => {
+    setPrevScreen(currentScreen)
     setCurrentScreen(screenInt)
     console.log(`Changing to screen: ${screenInt}`)
   }
@@ -213,19 +245,19 @@ const App = () => {
     case 0:
           return(
             <main>
-              <PrismScreen changeScreen={changeScreen} currentScreen={currentScreen} showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal}/>
+              <PrismScreen changeScreen={changeScreen} currentScreen={currentScreen} prevScreen={prevScreen} showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal}/>
             </main>
           )
     case 1:
           return(
             <main>
-              <MapScreen changeScreen={changeScreen} currentScreen={currentScreen} selectedPlace={selectedPlace} setSelectedPlace={setSelectedPlace}/>
+              <MapScreen changeScreen={changeScreen} currentScreen={currentScreen} prevScreen={prevScreen} selectedPlace={selectedPlace} setSelectedPlace={setSelectedPlace}/>
             </main>
           )
     case 2:
           return(
             <main>
-              <ViewScreen changeScreen={changeScreen} currentScreen={currentScreen} selectedPlace={selectedPlace}/>
+              <ViewScreen changeScreen={changeScreen} currentScreen={currentScreen} prevScreen={prevScreen} selectedPlace={selectedPlace}/>
             </main>
           )
   }

@@ -19,14 +19,13 @@
     color: white;
 }
 
-#prism-overlay {
+#prism-screen-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: var(--prism-base-color);
     opacity: 0;
     transition: opacity 3s ease-in;
-    /* mix-blend-mode: multiply; */
     z-index: 99;
     pointer-events: none;
 }

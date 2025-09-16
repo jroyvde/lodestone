@@ -1,5 +1,11 @@
-:root {
-    --map-image: url("./assets/map1.png");
+#map-screen-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    z-index: 99;
+    pointer-events: none;
 }
 
 .mapScreenContainer {
@@ -10,13 +16,9 @@
     grid-template-areas:
     "mapViewport"
     "bottomBar";
-    background-image: var(--map-image);
+    background-image:"./assets/map0.png";
     background-position: center;
     background-size: cover;
-}
-
-.mapViewport {
-
 }
 
 .mapTitle {
