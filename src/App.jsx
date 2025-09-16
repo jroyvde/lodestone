@@ -128,8 +128,8 @@ const MapScreen = ({ changeScreen, currentScreen, selectedPlace, setSelectedPlac
 // Screen 2: View
 const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
   useEffect(() => {
-    const viewScreenContainer = document.querySelector("#view-screen-container")
-    viewScreenContainer.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
+    const photoElement = document.querySelector("#photo")
+    photoElement.style.setProperty("background-image", `url("${selectedPlace.photo}")`)
   }, [selectedPlace])
 
   useEffect(() => {
@@ -141,15 +141,18 @@ const ViewScreen = ({ changeScreen, currentScreen, selectedPlace }) => {
   
   return(
     <>
-      <div id="marker">
-        <img src="/src/assets/marker.png" alt="marker" onClick={() => playSound("marker")} />
-      </div>
+
       <div id="viewControls">
         <img src="/src/assets/back.png" alt="left" onClick={() => { playSound("back") ; changeScreen(1) }} />
       </div>
       <div id="view-screen-container">
-
-      </div>
+        <div id="photo">
+          <img id="marker" src="/src/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
+              left: `${(selectedPlace.markerPos.x / 1200) * 100}%`,
+              top: `${(selectedPlace.markerPos.y / 900) * 100}%`,
+            }} />
+          </div>
+        </div>
     </>
   )
 }
