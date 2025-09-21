@@ -11,52 +11,52 @@
 // ambience:    Ambience audio
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
-const botanicalGardens = {
-    name: "Royal Botanic Gardens Victoria",
+export const places = []
+
+class Place {
+    constructor({ name, location, lat, long, markers }) {
+        // Set properties
+        this.name = name
+        this.location = location
+        this.lat = lat
+        this.long = long
+        this.markers = markers
+        this.distance = null
+        this.proximity = null
+        this.photo = `/assets/${name}_photo.webp`
+        this.ambience = `/assets/${name}_ambience.webm`
+        this.mapSvg = `/assets/${name}_map.svg`
+        // Push to array
+        places.push(this)
+    }
+}
+
+const building9 = new Place ({
+    name: "Building 9",
     location: "Melbourne, Australia",
-    lat: -37.825,
-    long: 144.971,
-    distance: null,
-    proximity: null,
-    photo: "/assets/photo0.webp",
-    markerPos: {
-        x: 215,
-        y: 565,
-    },
-    ambience: "/assets/ambience0.webm",
-    mapImg: "/assets/map0.webp",
-}
+    lat: -37.807222,
+    long: 144.964444,
+    markers: [
+        { x: 205, y: 715, text: ""}
+    ]
+})
 
-const blackBox = {
-    name: "Building 22",
+const gardenBuilding = new Place ({
+    name: "Garden Building",
     location: "Melbourne, Australia",
-    lat: -37.809,
-    long: 144.964,
-    distance: null,
-    proximity: null,
-    photo: "/assets/photo1.webp",
-    markerPos: {
-        x: 700,
-        y: 795,
-    },
-    ambience: "/assets/ambience1.webm",
-    mapImg: "/assets/map1.webp",
-}
+    lat: -37.808056,
+    long: 144.964167,
+    markers: [
+        { x: 425, y: 700, text: ""}
+    ]
+})
 
-const oldArtsBuilding = {
-    name: "Old Arts Building",
-    location: "Parkville, Australia",
-    lat: -37.798,
-    long: 144.960,
-    distance: null,
-    proximity: null,
-    photo: "/assets/photo2.webp",
-    markerPos: {
-        x: 380,
-        y: 530,
-    },
-    ambience: "/assets/ambience2.webm",
-    mapImg: "/assets/map2.webp",
-}
-
-export const places = [ botanicalGardens, blackBox, oldArtsBuilding ]
+const meatMarketStables = new Place ({
+    name: "Meat Market Stables",
+    location: "North Melbourne, Australia",
+    lat: -37.801111,
+    long: 144.953333,
+    markers: [
+        { x: 770, y: 645, text: ""}
+    ]
+})

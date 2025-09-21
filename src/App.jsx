@@ -156,7 +156,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
           <img src="/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
           <img src="/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
-      <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapImg}")` }}>
+      <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapSvg}")` }}>
         <div className="mapViewport">
 
         </div>
@@ -207,8 +207,8 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
       <div id="view-screen-container">
         <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
           <img id="marker" src="/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
-              left: `${(selectedPlace.markerPos.x / 1200) * 100}%`,
-              top: `${(selectedPlace.markerPos.y / 900) * 100}%`,
+              left: `${(selectedPlace.markers[0].x / 1280) * 100}%`,
+              top: `${(selectedPlace.markers[0].y / 960) * 100}%`,
             }} />
           </div>
         </div>
