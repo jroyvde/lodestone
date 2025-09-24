@@ -66,7 +66,7 @@ const sampler = new Tone.Sampler({
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const ambience = new Tone.Player({
-  url: "/src/assets/ambience0.webm",
+  url: "/assets/Point Ormond Lookout_ambience.webm",
   loop: true,
 })
 
