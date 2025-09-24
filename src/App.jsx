@@ -202,11 +202,11 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         }}
        />
       <div id="viewControls">
-        <img src="/assets/back.webp" alt="left" onClick={() => { playSound("back") ; returnToMapScreen() }} />
+        <img src="/assets/back.webp" alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
         <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
-          <img id="marker" src="/assets/marker.png" alt="marker" onClick={() => playSound("marker")} style={{
+          <img id="marker" src="/assets/marker.webp" alt="marker" onClick={() => playSound("marker")} style={{
               left: `${(selectedPlace.markers[0].x / 1280) * 100}%`,
               top: `${(selectedPlace.markers[0].y / 960) * 100}%`,
             }} />

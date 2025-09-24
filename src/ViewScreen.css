@@ -27,13 +27,14 @@
 
 #marker {
     position: absolute;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -95%);
     z-index: 1;
-    height: 10rem;
+    height: 15rem;
     cursor: pointer;
     image-rendering: smooth;
-    filter: drop-shadow(0 0 1rem black);
+    filter: drop-shadow(0 0 1rem black) sepia(100%) saturate(300%);
 }
+
 
 #viewControls {
     width: 25%;
