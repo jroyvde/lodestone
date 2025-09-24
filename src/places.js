@@ -23,6 +23,7 @@ class Place {
         this.markers = markers
         this.distance = null
         this.proximity = null
+        this.active = false
         this.photo = `/assets/${name}_photo.webp`
         this.ambience = `/assets/${name}_ambience.webm`
         this.mapSvg = `/assets/${name}_map.svg`

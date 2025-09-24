@@ -150,7 +150,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
-        <h3>PROXIMITY: {(selectedPlace.proximity * 99).toFixed(0)}%</h3>
+        <h3>PROXIMITY: {selectedPlace.active ? "100%" : `${(selectedPlace.proximity * 99).toFixed(0)}%`}</h3>
       </div>
       <div className="mapControls">
           <img src="/assets/left.webp" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
@@ -173,6 +173,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
 const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) => {
   const [overlayActive, setOverlayActive] = useState(true)
 
+  // Function: Return to the Map Screen
   const returnToMapScreen = async () => {
     // Do animations
     setOverlayActive("true")
@@ -191,8 +192,10 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
     return () => clearTimeout(timer)
   }, [])
 
-  setGrindVol(-24)  // Set volume of grinding sound
-  playAmbience()    // Start playing the new ambience
+  useEffect(() => {
+    setGrindVol(-24)  // Set volume of grinding sound
+    playAmbience()    // Start playing the new ambience
+  })
   
   return(
     <>
@@ -206,7 +209,10 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
       </div>
       <div id="view-screen-container">
         <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
-          <img id="marker" src="/assets/marker.webp" alt="marker" onClick={() => playSound("marker")} style={{
+          <div id="text">
+            <p></p>
+          </div>
+          <img id="marker" src="/assets/marker.webp" alt="marker" className={selectedPlace.active ? "pulsing" : ""} onClick={() => playSound("marker")} style={{
               left: `${(selectedPlace.markers[0].x / 1280) * 100}%`,
               top: `${(selectedPlace.markers[0].y / 960) * 100}%`,
             }} />
@@ -247,6 +253,11 @@ const App = () => {
     const n = sorted.length
     sorted.forEach((place, idx) => {
       place.proximity = n === 1 ? 1 : 1 - idx / (n - 1)
+      // Check if criteria for 100% proximity are met, set the flag if so
+      if (place.proximity === 1 && place.distance < 0.001) {
+        place.active = true
+        console.log(`100% Proximity active for ${place.name}`)
+      }
     })
   }
 

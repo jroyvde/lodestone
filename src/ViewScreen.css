@@ -23,18 +23,46 @@
     background-position: center;
     background-size: cover;
     image-rendering: pixelated;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#text {
+    width: min(80rem, calc(100% - 6rem));
+    z-index: 2;
+}
+
+#text > p {
+    text-align: center;
+    font-size: 2rem;
+    font-family: "Share Tech Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    filter: drop-shadow(0 0 1rem black);
 }
 
 #marker {
     position: absolute;
     transform: translate(-50%, -95%);
+    transform-origin: 0% 0%;
     z-index: 1;
     height: 15rem;
     cursor: pointer;
     image-rendering: smooth;
     filter: drop-shadow(0 0 1rem black) sepia(100%) saturate(300%);
+    transition: scale 1s cubic-bezier(0.95, 0.05, 0.8, -0.5);
 }
 
+.pulsing {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { scale: 1; }
+  50% { scale: 1.25; }
+}
 
 #viewControls {
     width: 25%;
