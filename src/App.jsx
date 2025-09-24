@@ -149,7 +149,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
-        <h3>PROXIMITY: {selectedPlace.proximity * 100}%</h3>
+        <h3>PROXIMITY: {(selectedPlace.proximity * 99).toFixed(0)}%</h3>
       </div>
       <div className="mapControls">
           <img src="/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
@@ -191,7 +191,6 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
   }, [])
 
   setGrindVol(-24)  // Set volume of grinding sound
-  //stopAmbience()    // Stop View Screen ambience if playing
   playAmbience()    // Start playing the new ambience
   
   return(

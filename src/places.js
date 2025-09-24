@@ -60,3 +60,44 @@ const meatMarketStables = new Place ({
         { x: 770, y: 645, text: ""}
     ]
 })
+
+const hawkeSt = new Place ({
+    name: "Hawke St",
+    location: "West Melbourne, Australia",
+    lat: -37.809167,
+    long: 144.944444,
+    markers: [
+        { x: 795, y: 590, text: ""},
+        { x: 915, y: 645, text: ""}
+    ]
+})
+
+const royalExhibitionBuilding = new Place ({
+    name: "Royal Exhibition Building",
+    location: "Carlton, Australia",
+    lat: -37.804711,
+    long: 144.972508,
+    markers: [
+        { x: 800, y: 610, text: ""}
+    ]
+})
+
+const universityOfMelbourne = new Place ({
+    name: "University of Melbourne",
+    location: "Parkville, Australia",
+    lat: -37.797975,
+    long: 144.959711,
+    markers: [
+        { x: 680, y: 675, text: ""}
+    ]
+})
+
+const leBonTon = new Place ({
+    name: "Le Bon Ton",
+    location: "Collingwood, Australia",
+    lat: -37.804822,
+    long: 144.988569,
+    markers: [
+        { x: 480, y: 550, text: ""}
+    ]
+})
