@@ -32,6 +32,7 @@
     height: 10rem;
     cursor: pointer;
     image-rendering: smooth;
+    filter: drop-shadow(0 0 1rem black);
 }
 
 #viewControls {
@@ -48,4 +49,5 @@
     width: 5rem;
     height: 5rem;
     cursor: pointer;
+    filter: drop-shadow(0 0 1rem black);
 }
