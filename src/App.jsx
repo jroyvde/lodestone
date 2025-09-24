@@ -146,6 +146,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
         opacity: overlayActive ? 1 : 0,
         }}
        />
+      <div className="map-color-overlay"></div>
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
