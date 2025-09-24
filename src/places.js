@@ -31,13 +31,31 @@ class Place {
     }
 }
 
+// Point Ormond
+
+const leBonTon = new Place ({
+    name: "Le Bon Ton",
+    location: "Collingwood, Australia",
+    lat: -37.804822,
+    long: 144.988569,
+    markers: [
+        { x: 480, y: 550, text: ""}
+    ]
+})
+
+// Royal Botanic Gardens Victoria
+
+// St Kilda Rd
+
+// Flinders Street Station
+
 const building9 = new Place ({
     name: "Building 9",
     location: "Melbourne, Australia",
     lat: -37.807222,
     long: 144.964444,
     markers: [
-        { x: 205, y: 715, text: ""}
+        { x: 205, y: 715, text: "" }
     ]
 })
 
@@ -49,7 +67,29 @@ const gardenBuilding = new Place ({
     markers: [
         { x: 425, y: 700, text: ""}
     ]
+}) // Check position
+
+const universityOfMelbourne = new Place ({
+    name: "University of Melbourne",
+    location: "Parkville, Australia",
+    lat: -37.797975,
+    long: 144.959711,
+    markers: [
+        { x: 680, y: 675, text: ""}
+    ]
 })
+
+const royalExhibitionBuilding = new Place ({
+    name: "Royal Exhibition Building",
+    location: "Carlton, Australia",
+    lat: -37.804711,
+    long: 144.972508,
+    markers: [
+        { x: 800, y: 610, text: ""}
+    ]
+})
+
+// Building 8
 
 const meatMarketStables = new Place ({
     name: "Meat Market Stables",
@@ -72,32 +112,4 @@ const hawkeSt = new Place ({
     ]
 })
 
-const royalExhibitionBuilding = new Place ({
-    name: "Royal Exhibition Building",
-    location: "Carlton, Australia",
-    lat: -37.804711,
-    long: 144.972508,
-    markers: [
-        { x: 800, y: 610, text: ""}
-    ]
-})
-
-const universityOfMelbourne = new Place ({
-    name: "University of Melbourne",
-    location: "Parkville, Australia",
-    lat: -37.797975,
-    long: 144.959711,
-    markers: [
-        { x: 680, y: 675, text: ""}
-    ]
-})
-
-const leBonTon = new Place ({
-    name: "Le Bon Ton",
-    location: "Collingwood, Australia",
-    lat: -37.804822,
-    long: 144.988569,
-    markers: [
-        { x: 480, y: 550, text: ""}
-    ]
-})
+// Durham Rd
