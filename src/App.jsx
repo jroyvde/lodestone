@@ -152,9 +152,9 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
         <h3>PROXIMITY: {(selectedPlace.proximity * 99).toFixed(0)}%</h3>
       </div>
       <div className="mapControls">
-          <img src="/assets/left.png" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
-          <img src="/assets/go.png" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
-          <img src="/assets/right.png" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
+          <img src="/assets/left.webp" alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
+          <img src="/assets/go.webp" alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
+          <img src="/assets/right.webp" alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
       <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapSvg}")` }}>
         <div className="mapViewport">
