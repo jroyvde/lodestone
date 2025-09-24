@@ -12,16 +12,16 @@
 }
 
 #intro-modal {
-    width: 80rem;
+    width: min(80rem, calc(100% - 6rem));
     font-family: "Share Tech Mono", monospace;
     font-weight: 400;
     font-style: normal;
-    font-size: 4rem;
+    font-size: 3rem;
     color: white;
 }
 
 #intro-modal > .smaller {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 #prism-screen-overlay {
@@ -33,4 +33,20 @@
     transition: opacity 3s ease-in;
     z-index: 99;
     pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+    #intro-modal {
+        font-size: 2rem;
+    }
+
+    #intro-modal > .smaller {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    #intro-modal {
+        font-size: 1.5rem;
+    }
 }
