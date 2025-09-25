@@ -26,14 +26,24 @@ class Place {
         this.active = false
         this.photo = `/assets/${name}_photo.webp`
         this.ambience = `/assets/${name}_ambience.webm`
-        this.mapSvg = `/assets/${name}_map.svg`
+        this.mapSvg = `/assets/${name}_map.webp` // Using webp for now to avoid performance issues with svg
         // Push to array
         places.push(this)
     }
 }
 
-// Point Ormond
+// Point Ormond Lookout
+const pointOrmondLookout = new Place ({
+    name: "Point Ormond Lookout",
+    location: "Elwood, Australia",
+    lat: -37.881933,
+    long: 144.976311,
+    markers: [
+        { x: 310, y: 710, text: ""}
+    ]
+})
 
+// Le Bon Ton
 const leBonTon = new Place ({
     name: "Le Bon Ton",
     location: "Collingwood, Australia",
@@ -45,11 +55,39 @@ const leBonTon = new Place ({
 })
 
 // Royal Botanic Gardens Victoria
+const royalBotanicGardensVictoria = new Place ({
+    name: "Royal Botanic Gardens Victoria",
+    location: "Melbourne, Australia",
+    lat: -37.832047,
+    long: 144.97855,
+    markers: [
+        { x: 445, y: 720, text: ""}
+    ]
+})
 
 // St Kilda Rd
+const stKildaRd = new Place ({
+    name: "St Kilda Rd",
+    location: "Melbourne, Australia",
+    lat: 0,
+    long: 0,
+    markers: [
+        { x: 0, y: 0, text: ""}
+    ]
+})
 
 // Flinders Street Station
+const flindersStreetStation = new Place ({
+    name: "Flinders Street Station",
+    location: "Melbourne, Australia",
+    lat: -37.818153,
+    long: 144.966561,
+    markers: [
+        { x: 1200, y: 760, text: ""}
+    ]
+})
 
+// Building 9
 const building9 = new Place ({
     name: "Building 9",
     location: "Melbourne, Australia",
@@ -60,6 +98,7 @@ const building9 = new Place ({
     ]
 })
 
+// Garden Building
 const gardenBuilding = new Place ({
     name: "Garden Building",
     location: "Melbourne, Australia",
@@ -70,6 +109,7 @@ const gardenBuilding = new Place ({
     ]
 }) // Check position
 
+// University of Melbourne
 const universityOfMelbourne = new Place ({
     name: "University of Melbourne",
     location: "Parkville, Australia",
@@ -80,6 +120,7 @@ const universityOfMelbourne = new Place ({
     ]
 })
 
+// Royal Exhibition Building
 const royalExhibitionBuilding = new Place ({
     name: "Royal Exhibition Building",
     location: "Carlton, Australia",
@@ -90,8 +131,18 @@ const royalExhibitionBuilding = new Place ({
     ]
 })
 
-// Building 8
+// Building 8 (big hat at 37%?)
+const building8 = new Place ({
+    name: "Building 8",
+    location: "Melbourne, Australia",
+    lat: 0,
+    long: 0,
+    markers: [
+        { x: 0, y: 0, text: ""}
+    ]
+})
 
+// Meat Market Stables
 const meatMarketStables = new Place ({
     name: "Meat Market Stables",
     location: "North Melbourne, Australia",
@@ -102,6 +153,7 @@ const meatMarketStables = new Place ({
     ]
 })
 
+// Hawke St
 const hawkeSt = new Place ({
     name: "Hawke St",
     location: "West Melbourne, Australia",
@@ -114,3 +166,12 @@ const hawkeSt = new Place ({
 })
 
 // Durham Rd
+const durhamRd = new Place ({
+    name: "Durham Rd",
+    location: "Melbourne, Australia",
+    lat: -37.834728,
+    long: 145.089717,
+    markers: [
+        { x: 245, y: 410, text: ""}
+    ]
+})
