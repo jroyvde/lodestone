@@ -254,7 +254,7 @@ const App = () => {
     sorted.forEach((place, idx) => {
       place.proximity = n === 1 ? 1 : 1 - idx / (n - 1)
       // Check if criteria for 100% proximity are met, set the flag if so
-      if (place.proximity === 1 && place.distance < 0.001) {
+      if (place.proximity === 1 && place.distance < 0.0005) {
         place.active = true
         console.log(`100% Proximity active for ${place.name}`)
       }
