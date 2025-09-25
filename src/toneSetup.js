@@ -65,7 +65,7 @@ const sampler = new Tone.Sampler({
 ///////// Player
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const ambience = new Tone.Player({
+let ambience = new Tone.Player({
   url: "/assets/Point Ormond Lookout_ambience.webm",
   loop: true,
 })
@@ -168,6 +168,15 @@ export const stopAmbience = () => {
   if (ambience.state === "started") {
     ambience.stop()
   }
+}
+
+export const swapAmbience = (newAmbience) => {
+  stopAmbience()
+  ambience.load(newAmbience)
+}
+
+export const setAmbienceCrush = (crushBits) => {
+  ambienceCrush.bits.value = crushBits
 }
 
 export const playSound = (sound) => {
