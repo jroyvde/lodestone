@@ -46,10 +46,9 @@ export const Prism = ({ currentScreen, onClick }) => {
                 `rotateX(${rotAngle.current.x}deg) 
                 rotateY(${rotAngle.current.y}deg)
                 rotateZ(${rotAngle.current.z}deg)`
+            requestAnimationFrame(rotatePrism)
         }
-
-        const interval = setInterval(rotatePrism, 10)
-        return () => clearInterval(interval)
+        rotatePrism()
     }, [])
 
     return(
