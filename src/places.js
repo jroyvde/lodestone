@@ -12,6 +12,7 @@
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 export const places = []
+export const ambiencePlayersConfig = {}
 
 class Place {
     constructor({ name, location, lat, long, markers }) {
@@ -29,6 +30,9 @@ class Place {
         this.mapSvg = `/assets/${name}_map.webp` // Using webp for now to avoid performance issues with svg
         // Push to array
         places.push(this)
+        // Add ambience to the Tone Players config
+        ambiencePlayersConfig[this.name] = this.ambience
+        console.log(`${this.name}: ${this.ambience}`)
     }
 }
 

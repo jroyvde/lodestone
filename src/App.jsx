@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Import functions
-import { toneInit, playGrind, setGrindVol, playAmbience, stopAmbience, swapAmbience, setAmbienceCrush, playSound, playTransNoise, stopTransNoise } from './toneSetup'
+import { toneInit, playGrind, setGrindVol, playAmbience, stopAmbience, setAmbienceCrush, playSound, playTransNoise, stopTransNoise } from './toneSetup'
 import { wait, lerp } from "./helperFunctions"
 
 // Import Places
@@ -55,7 +55,7 @@ const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, 
 
   stopTransNoise()
   setGrindVol(-6)
-  stopAmbience()
+  //stopAmbience(selectedPlace.name)
 
   // Restore normal zoom if zoomed in
   useEffect(() => {
@@ -104,8 +104,6 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     // Set the new Place
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
-    // Set the correct ambient sound in Tone
-    swapAmbience(places[newPlaceIndex].ambience)
     // Set the correct bitcrushing based on proximity
     const crushBits = lerp(6, 10, places[newPlaceIndex].proximity)
     setAmbienceCrush(crushBits)
@@ -123,7 +121,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   }
 
   setGrindVol(-12)  // Set volume of grinding sound
-  stopAmbience()    // Stop View Screen ambience if playing
+  stopAmbience(selectedPlace.name)    // Stop View Screen ambience if playing
 
   // Play the transition-in effect
   useEffect(() => {
@@ -194,7 +192,8 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
 
   useEffect(() => {
     setGrindVol(-24)  // Set volume of grinding sound
-    playAmbience()    // Start playing the new ambience
+    console.log(`selected place name should be ${selectedPlace.name}`)
+    if (!overlayActive) playAmbience(selectedPlace.name)    // Start playing the new ambience
   })
   
   return(

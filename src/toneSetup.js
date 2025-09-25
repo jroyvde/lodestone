@@ -1,4 +1,5 @@
 import * as Tone from "tone"
+import { ambiencePlayersConfig } from "./places"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Synthesizers
@@ -65,10 +66,7 @@ const sampler = new Tone.Sampler({
 ///////// Player
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let ambience = new Tone.Player({
-  url: "/assets/Point Ormond Lookout_ambience.webm",
-  loop: true,
-})
+const ambience = new Tone.Players(ambiencePlayersConfig)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Audio Effects
@@ -158,21 +156,16 @@ export const stopTransNoise = () => {
   trans.triggerRelease()
 }
 
-export const playAmbience = () => {
-  if (ambience.state === "stopped") {
-    ambience.start()
+export const playAmbience = (placeName) => {
+  if (ambience.player(placeName).state === "stopped" && ambience.player(placeName).buffer.loaded) {
+    ambience.player(placeName).start()
   }
 }
 
-export const stopAmbience = () => {
-  if (ambience.state === "started") {
-    ambience.stop()
+export const stopAmbience = (placeName) => {
+  if (ambience.player(placeName).state === "started") {
+    ambience.player(placeName).stop()
   }
-}
-
-export const swapAmbience = (newAmbience) => {
-  stopAmbience()
-  ambience.load(newAmbience)
 }
 
 export const setAmbienceCrush = (crushBits) => {
