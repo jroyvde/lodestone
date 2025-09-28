@@ -9,6 +9,7 @@ import { places } from "./places"
 
 // Import components
 import { Prism } from "./Prism"
+import { Markers } from "./Markers"
 
 // Import stylesheets
 import "normalize.css"
@@ -211,12 +212,9 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
           <div id="text">
             <p></p>
           </div>
-          <img id="marker" src="/assets/marker.webp" alt="marker" className={selectedPlace.active ? "pulsing" : ""} onClick={() => playSound("marker")} style={{
-              left: `${(selectedPlace.markers[0].x / 1280) * 100}%`,
-              top: `${(selectedPlace.markers[0].y / 960) * 100}%`,
-            }} />
-          </div>
+          <Markers selectedPlace={selectedPlace}/>
         </div>
+      </div>
     </>
   )
 }

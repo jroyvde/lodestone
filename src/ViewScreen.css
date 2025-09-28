@@ -31,6 +31,7 @@
 #text {
     width: min(80rem, calc(100% - 6rem));
     z-index: 2;
+    pointer-events: none;
 }
 
 #text > p {
@@ -43,7 +44,7 @@
     filter: drop-shadow(0 0 1rem black);
 }
 
-#marker {
+.marker {
     position: absolute;
     transform: translate(-50%, -95%);
     transform-origin: 0% 0%;
