@@ -119,7 +119,7 @@ const gardenBuilding = new Place ({
     lat: -37.808056,
     long: 144.964167,
     markers: [
-        { x: 425, y: 700, text: ""}
+        { x: 425, y: 700, text: ""},
     ],
     easterEggs: [],
 }) // Check position

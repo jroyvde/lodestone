@@ -13,6 +13,8 @@ export const lollipop = new easterEgg({
     img: "/assets/marker.webp",
     onClick: () => {
         console.log(`${lollipop.alt} clicked.`)
+        // Clicking the basketball hoop triggers an animation where a ball is tossed in.
+        // The hoop shrinks away, and is replaced by a lollipop.
     },
 })
 
@@ -22,5 +24,6 @@ export const prismCup = new easterEgg({
     img: "/assets/marker.webp",
     onClick: () => {
         console.log(`${prismCup.alt} clicked.`)
+        // Plays a sound effect like ice and water in a cup.
     },
 })
