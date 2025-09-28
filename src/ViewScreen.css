@@ -44,16 +44,23 @@
     filter: drop-shadow(0 0 1rem black);
 }
 
-.marker {
+.marker, .easter-egg {
     position: absolute;
-    transform: translate(-50%, -95%);
     transform-origin: 0% 0%;
     z-index: 1;
     height: 15rem;
     cursor: pointer;
     image-rendering: smooth;
-    filter: drop-shadow(0 0 1rem black) sepia(100%) saturate(300%);
+    transform: translate(-50%, -100%);
     transition: scale 1s cubic-bezier(0.95, 0.05, 0.8, -0.5);
+}
+
+.marker {
+    filter: drop-shadow(0 0 1rem black) sepia(100%) saturate(300%);
+}
+
+.easter-egg {
+    filter: drop-shadow(0 0 1rem black);
 }
 
 .pulsing {

@@ -7,21 +7,25 @@
 // distance:    Calculated distance, based on latitude and longitude
 // proximity:   Averaged value between 0 and 1, based on distance (in relation to all other Places)
 // photo:       Main image displayed on the View Screen
-// markerPos:   Position of the "Marker" on the photo image (in pixels, converted to a percentage in code)
+// markers:     Array of "Markers" on the photo image, stored as objects
+// easterEggs:  Array of "Easter Egg" objects on the photo image
 // ambience:    Ambience audio
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
+
+import { lollipop, prismCup } from "./easterEggs"
 
 export const places = []
 export const ambiencePlayersConfig = {}
 
 class Place {
-    constructor({ name, location, lat, long, markers }) {
+    constructor({ name, location, lat, long, markers, easterEggs }) {
         // Set properties
         this.name = name
         this.location = location
         this.lat = lat
         this.long = long
         this.markers = markers
+        this.easterEggs = easterEggs
         this.distance = null
         this.proximity = null
         this.active = false
@@ -44,7 +48,8 @@ const pointOrmondLookout = new Place ({
     long: 144.976311,
     markers: [
         { x: 310, y: 710, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Le Bon Ton
@@ -55,7 +60,8 @@ const leBonTon = new Place ({
     long: 144.988569,
     markers: [
         { x: 480, y: 550, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Royal Botanic Gardens Victoria
@@ -66,7 +72,8 @@ const royalBotanicGardensVictoria = new Place ({
     long: 144.97855,
     markers: [
         { x: 445, y: 720, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // St Kilda Rd
@@ -77,7 +84,8 @@ const stKildaRd = new Place ({
     long: 0,
     markers: [
         { x: 0, y: 0, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Flinders Street Station
@@ -88,7 +96,8 @@ const flindersStreetStation = new Place ({
     long: 144.966561,
     markers: [
         { x: 1200, y: 760, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Building 9
@@ -99,7 +108,8 @@ const building9 = new Place ({
     long: 144.964444,
     markers: [
         { x: 205, y: 715, text: "" }
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Garden Building
@@ -110,7 +120,8 @@ const gardenBuilding = new Place ({
     long: 144.964167,
     markers: [
         { x: 425, y: 700, text: ""}
-    ]
+    ],
+    easterEggs: [],
 }) // Check position
 
 // University of Melbourne
@@ -121,7 +132,8 @@ const universityOfMelbourne = new Place ({
     long: 144.959711,
     markers: [
         { x: 680, y: 675, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Royal Exhibition Building
@@ -132,7 +144,8 @@ const royalExhibitionBuilding = new Place ({
     long: 144.972508,
     markers: [
         { x: 800, y: 610, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Building 8 (big hat at 37%?)
@@ -143,7 +156,8 @@ const building8 = new Place ({
     long: 0,
     markers: [
         { x: 0, y: 0, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Meat Market Stables
@@ -154,7 +168,8 @@ const meatMarketStables = new Place ({
     long: 144.953333,
     markers: [
         { x: 770, y: 645, text: ""}
-    ]
+    ],
+    easterEggs: [],
 })
 
 // Hawke St
@@ -164,9 +179,9 @@ const hawkeSt = new Place ({
     lat: -37.809167,
     long: 144.944444,
     markers: [
-        { x: 795, y: 590, text: ""},
-        { x: 915, y: 645, text: ""}
-    ]
+        { x: 795, y: 590, text: ""}
+    ],
+    easterEggs: [lollipop],
 })
 
 // Durham Rd
@@ -177,5 +192,6 @@ const durhamRd = new Place ({
     long: 145.089717,
     markers: [
         { x: 245, y: 410, text: ""}
-    ]
+    ],
+    easterEggs: [prismCup],
 })
