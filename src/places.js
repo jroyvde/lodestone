@@ -152,10 +152,12 @@ const royalExhibitionBuilding = new Place ({
 const building8 = new Place ({
     name: "Building 8",
     location: "Melbourne, Australia",
-    lat: 0,
-    long: 0,
+    lat: -37.807872,
+    long: 144.963558,
     markers: [
-        { x: 0, y: 0, text: ""}
+        { x: 705, y: 835, text: ""},
+        { x: 275, y: 640, text: ""},
+        { x: 905, y: 705, text: ""}
     ],
     easterEggs: [],
 })
