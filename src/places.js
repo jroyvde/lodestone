@@ -80,10 +80,10 @@ const royalBotanicGardensVictoria = new Place ({
 const stKildaRd = new Place ({
     name: "St Kilda Rd",
     location: "Melbourne, Australia",
-    lat: 0,
-    long: 0,
+    lat: -37.825328,
+    long: 144.970986,
     markers: [
-        { x: 0, y: 0, text: ""}
+        { x: 715, y: 405, text: ""}
     ],
     easterEggs: [],
 })
