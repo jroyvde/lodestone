@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react'
 import { playSound } from './toneSetup'
 
 // Small Component for the Text
-const MarkerText = ({ textDisplay, textContent }) => {
+const MarkerText = ({ textDisplay, setTextDisplay, textContent }) => {
   return(
     <div id="text" style={{display: textDisplay ? "block" : "none"}}>
-      <p>{textContent}</p>
+      <p>
+        {textContent}
+        <img src="/assets/next.webp" alt="next" onClick={() => { playSound("nav") ; setTextDisplay(false) }}></img>
+      </p>
     </div>
   )
 }
@@ -24,6 +27,7 @@ export const Markers = ({ selectedPlace }) => {
     setTextDisplay(true)
   }
 
+
   // Function: Triggered when clicking on a Marker
   const markerClicked = (marker) => {
     if (selectedPlace.active) {
@@ -36,7 +40,7 @@ export const Markers = ({ selectedPlace }) => {
   }
 
   useEffect(() => {
-    let tempJSX = [<MarkerText key="markerText" textDisplay={textDisplay} textContent={textContent} />]
+    let tempJSX = [<MarkerText key="markerText" textDisplay={textDisplay} setTextDisplay={setTextDisplay} textContent={textContent} />]
     // Create an <img> for each marker in the sekectedPlace's markers property
     selectedPlace.markers.forEach(marker => {
         tempJSX.push(

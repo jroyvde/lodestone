@@ -22,26 +22,37 @@
     width: calc(100vh * 1.5);
     background-position: center;
     background-size: cover;
-    image-rendering: pixelated;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #text {
+    background-color: black;
+    align-self: flex-end;
     width: min(80rem, calc(100% - 6rem));
     z-index: 2;
-    pointer-events: none;
+    padding: 2rem;
+    margin: 1rem;
+    filter: drop-shadow(0 0 1rem black);
 }
 
 #text > p {
-    text-align: center;
     font-size: 2rem;
     font-family: "Share Tech Mono", monospace;
     font-weight: 400;
     font-style: normal;
     color: white;
     filter: drop-shadow(0 0 1rem black);
+    margin: 0;
+    vertical-align: middle;
+}
+
+#text > p > img {
+    height: 2rem;
+    margin-left: 0.5rem;
+    vertical-align: top;
+    cursor: pointer;
 }
 
 .marker, .easter-egg {
