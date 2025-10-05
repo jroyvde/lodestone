@@ -59,7 +59,7 @@ const leBonTon = new Place ({
     lat: -37.804822,
     long: 144.988569,
     markers: [
-        { x: 480, y: 550, text: ""}
+        { x: 480, y: 550, text: "It's over, isn't it."}
     ],
     easterEggs: [],
 })
@@ -71,7 +71,7 @@ const royalBotanicGardensVictoria = new Place ({
     lat: -37.832047,
     long: 144.97855,
     markers: [
-        { x: 445, y: 720, text: ""}
+        { x: 445, y: 720, text: "Can something already rotted away ever regain its form? If you wanted, you could have made me believe it."}
     ],
     easterEggs: [],
 })
@@ -83,7 +83,7 @@ const stKildaRd = new Place ({
     lat: -37.825328,
     long: 144.970986,
     markers: [
-        { x: 715, y: 405, text: ""}
+        { x: 715, y: 405, text: "That last walk felt so long. Hand in hand, yet never further apart."}
     ],
     easterEggs: [],
 })
@@ -95,7 +95,7 @@ const flindersStreetStation = new Place ({
     lat: -37.818153,
     long: 144.966561,
     markers: [
-        { x: 1200, y: 760, text: ""}
+        { x: 1200, y: 760, text: "When I looked up, I'd already seen her for the last time."}
     ],
     easterEggs: [],
 })
@@ -107,7 +107,7 @@ const building9 = new Place ({
     lat: -37.807222,
     long: 144.964444,
     markers: [
-        { x: 205, y: 715, text: "" }
+        { x: 205, y: 715, text: "It's what the me I want to be would do." }
     ],
     easterEggs: [],
 })
@@ -157,7 +157,7 @@ const building8 = new Place ({
     markers: [
         { x: 705, y: 835, text: ""},
         { x: 275, y: 640, text: ""},
-        { x: 905, y: 705, text: ""}
+        { x: 905, y: 705, text: "From roses, I weave my heart. I feel blue, but like the sky."}
     ],
     easterEggs: [],
 })
@@ -193,7 +193,7 @@ const durhamRd = new Place ({
     lat: -37.834728,
     long: 145.089717,
     markers: [
-        { x: 245, y: 410, text: ""}
+        { x: 245, y: 410, text: "Maybe I'm not so bad after all."}
     ],
     easterEggs: [prismCup],
 })

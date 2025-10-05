@@ -3,14 +3,32 @@ import { useState, useEffect } from 'react'
 // Import functions
 import { playSound } from './toneSetup'
 
+// Small Component for the Text
+const MarkerText = ({ textDisplay, textContent }) => {
+  return(
+    <div id="text" style={{display: textDisplay ? "block" : "none"}}>
+      <p>{textContent}</p>
+    </div>
+  )
+}
+
 // Component for creating Markers and Easter Eggs
 export const Markers = ({ selectedPlace }) => {
   const [markersJSX, setMarkersJSX] = useState([])
+  const [textDisplay, setTextDisplay] = useState(false)
+  const [textContent, setTextContent] = useState(selectedPlace.markers[0].text)
 
-  // Function triggered when clicking on a Marker
+  // Function: Show a Marker's Text
+  const showText = (markerText) => {
+    setTextContent(markerText)
+    setTextDisplay(true)
+  }
+
+  // Function: Triggered when clicking on a Marker
   const markerClicked = (marker) => {
     if (selectedPlace.active) {
         // TO-DO: Trigger the appearance of the marker's text
+        showText(marker.text)
         console.log(marker.text)
     } else {
         playSound("marker")
@@ -18,7 +36,7 @@ export const Markers = ({ selectedPlace }) => {
   }
 
   useEffect(() => {
-    let tempJSX = []
+    let tempJSX = [<MarkerText key="markerText" textDisplay={textDisplay} textContent={textContent} />]
     // Create an <img> for each marker in the sekectedPlace's markers property
     selectedPlace.markers.forEach(marker => {
         tempJSX.push(
@@ -38,7 +56,7 @@ export const Markers = ({ selectedPlace }) => {
         )
     })
     setMarkersJSX(tempJSX)
-  }, [])
+  }, [textContent, textDisplay])
 
   return(
     markersJSX
