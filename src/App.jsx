@@ -223,7 +223,7 @@ const App = () => {
   const [selectedPlace, setSelectedPlace] = useState(places[0])    // The Place currently highlighted/selected on the Map Screen
 
   const coordsRef = useRef(null)  // Store the user's coordinates
-  const testMode = useRef(true)  // Test Mode: Shows all Places as if at 100% Proximity
+  const testMode = useRef(false)  // Test Mode: Shows all Places as if at 100% Proximity
 
   const changeScreen = (screenInt) => {
     setPrevScreen(currentScreen)
@@ -248,7 +248,7 @@ const App = () => {
     sorted.forEach((place, idx) => {
       place.proximity = n === 1 ? 1 : 1 - idx / (n - 1)
       // Check if criteria for 100% proximity are met, set the flag if so
-      if ((place.proximity === 1 && place.distance < 0.0005) || testMode) {
+      if ((place.proximity === 1 && place.distance < 0.0005) || testMode.current) {
         place.active = true
         console.log(`100% Proximity active for ${place.name}`)
       }
