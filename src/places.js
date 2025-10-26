@@ -29,9 +29,9 @@ class Place {
         this.distance = null
         this.proximity = null
         this.active = false
-        this.photo = `/assets/${name}_photo.webp`
-        this.ambience = `/assets/${name}_ambience.webm`
-        this.mapSvg = `/assets/${name}_map.webp` // Using webp for now to avoid performance issues with svg
+        this.photo = `${import.meta.env.BASE_URL}assets/${name}_photo.webp`
+        this.ambience = `${import.meta.env.BASE_URL}assets/${name}_ambience.webm`
+        this.mapSvg = `${import.meta.env.BASE_URL}assets/${name}_map.webp` // Using webp for now to avoid performance issues with svg
         // Push to array
         places.push(this)
         // Add ambience to the Tone Players config

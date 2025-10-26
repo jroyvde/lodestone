@@ -9,7 +9,7 @@ const MarkerText = ({ textDisplay, setTextDisplay, textContent }) => {
     <div id="text" style={{display: textDisplay ? "block" : "none"}}>
       <p>
         {textContent}
-        <img src="/assets/next.webp" alt="next" onClick={() => { playSound("nav") ; setTextDisplay(false) }}></img>
+        <img src={`${import.meta.env.BASE_URL}assets/next.webp`} alt="next" onClick={() => { playSound("nav") ; setTextDisplay(false) }}></img>
       </p>
     </div>
   )
@@ -44,7 +44,7 @@ export const Markers = ({ selectedPlace }) => {
     // Create an <img> for each marker in the sekectedPlace's markers property
     selectedPlace.markers.forEach(marker => {
         tempJSX.push(
-            <img src="/assets/marker.webp" alt="marker" key={`${marker.x},${marker.y}`} className={selectedPlace.active ? "marker pulsing" : "marker"} onClick={() => markerClicked(marker)} style={{
+            <img src={`${import.meta.env.BASE_URL}assets/marker.webp`} alt="marker" key={`${marker.x},${marker.y}`} className={selectedPlace.active ? "marker pulsing" : "marker"} onClick={() => markerClicked(marker)} style={{
             left: `${(marker.x / 1280) * 100}%`,
             top: `${(marker.y / 960) * 100}%`,
             }} />
