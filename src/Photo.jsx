@@ -8,20 +8,17 @@ export const Photo = ({ selectedPlace }) => {
         // Handle when patch is ready
         window.patchInitialized = (patch) => {
             patchRef.current = patch
+            if (patchRef.current) {
+                patchRef.current.setVariable("name", selectedPlace.name)
+                patchRef.current.setVariable("proximity", selectedPlace.proximity)
+            }
         }
-
         // Cleanup
         return () => {
             window.patchInitialized = null
             patchRef.current = null
         }
     }, [])
-
-    useEffect(() => {
-        if (patchRef.current && selectedPlace) {
-            patchRef.current.setVariable("proximity", selectedPlace.proximity)
-        }
-    }, [selectedPlace])
 
     return(
         <div id="photo">
