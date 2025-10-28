@@ -9,6 +9,7 @@ import { places } from "./places"
 
 // Import components
 import { Prism } from "./Prism"
+import { Photo } from "./Photo"
 import { Markers } from "./Markers"
 
 // Import stylesheets
@@ -207,9 +208,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         <img src={`${import.meta.env.BASE_URL}assets/back.webp`} alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
-        <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
-          <Markers selectedPlace={selectedPlace}/>
-        </div>
+        <Photo selectedPlace={selectedPlace} />
       </div>
     </>
   )
