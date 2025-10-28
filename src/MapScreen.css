@@ -63,6 +63,20 @@
     font-size: 2rem;
     margin: 1rem;
     filter: drop-shadow(0 0 1rem black);
+    
+}
+
+.grow {
+    animation: grow 2s ease-in-out infinite;
+}
+
+@keyframes grow {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .mapControls {

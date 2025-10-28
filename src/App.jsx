@@ -148,7 +148,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
       <div className="mapTitle">
         <h1>{selectedPlace.name}</h1>
         <h2>{selectedPlace.location}</h2>
-        <h3>PROXIMITY: {selectedPlace.active ? "100%" : `${(selectedPlace.proximity * 99).toFixed(0)}%`}</h3>
+        <h3 className={selectedPlace.active ? "grow" : ""}>PROXIMITY: {selectedPlace.active ? "100%" : `${(selectedPlace.proximity * 99).toFixed(0)}%`}</h3>
       </div>
       <div className="mapControls">
           <img src={`${import.meta.env.BASE_URL}assets/left.webp`} alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
