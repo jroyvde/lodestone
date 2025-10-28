@@ -15,7 +15,7 @@
 import { lollipop, prismCup } from "./easterEggs"
 
 export const places = []
-export const ambiencePlayersConfig = {}
+export const ambiencePlayersUrls = {}
 
 class Place {
     constructor({ name, location, lat, long, markers, easterEggs }) {
@@ -35,7 +35,7 @@ class Place {
         // Push to array
         places.push(this)
         // Add ambience to the Tone Players config
-        ambiencePlayersConfig[this.name] = this.ambience
+        ambiencePlayersUrls[this.name] = this.ambience
         console.log(`${this.name}: ${this.ambience}`)
     }
 }
