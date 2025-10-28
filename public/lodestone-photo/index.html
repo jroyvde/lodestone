@@ -55,11 +55,6 @@
         function patchInitialized(patch)
         {
             // You can now access the patch object (patch), register variable watchers and so on
-
-            // Expose patch to parent window
-            if (window.parent.patchInitialized) {
-                window.parent.patchInitialized(patch)
-            }
         }
 
         function patchFinishedLoading(patch)
