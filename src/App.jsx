@@ -191,7 +191,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
   }, [])
 
   useEffect(() => {
-    setGrindVol(-24)  // Set volume of grinding sound
+    setGrindVol(-36)  // Set volume of grinding sound
     console.log(`selected place name should be ${selectedPlace.name}`)
     if (!overlayActive) playAmbience(selectedPlace.name)    // Start playing the new ambience
   })

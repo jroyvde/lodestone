@@ -197,3 +197,65 @@ const durhamRd = new Place ({
     ],
     easterEggs: [prismCup],
 })
+
+// OIC Seminar House
+const oicSeminarHouse = new Place ({
+    name: "OIC Seminar House",
+    location: "Ibaraki, Osaka, Japan",
+    lat: -34.809931,
+    long: 135.561622,
+    markers: [
+        { x: 900, y: 850, text: ""},
+        { x: 1120, y: 530, text: ""},
+    ],
+    easterEggs: [],
+})
+
+// Ritsumeikan University Osaka Ibaraki Campus
+const ritsumeikanUniversityOic = new Place ({
+    name: "Ritsumeikan University OIC",
+    location: "Ibaraki, Osaka, Japan",
+    lat: -34.80965,
+    long: 135.561914,
+    markers: [
+        { x: 960, y: 430, text: ""},
+        { x: 685, y: 565, text: ""}
+    ],
+    easterEggs: [],
+})
+
+// Kaikatsu Club Tenrokuten
+const kaikatsuClubTenrokuten = new Place ({
+    name: "Kaikatsu Club Tenrokuten",
+    location: "Kita Ward, Osaka, Japan",
+    lat: -34.710419,
+    long: 135.510997,
+    markers: [
+        { x: 445, y: 810, text: ""}
+    ],
+    easterEggs: [],
+})
+
+// Building H
+const buildingH = new Place ({
+    name: "Building H",
+    location: "Ibaraki, Osaka, Japan",
+    lat: -34.808792,
+    long: 135.561694,
+    markers: [
+        { x: 945, y: 670, text: ""}
+    ],
+    easterEggs: [],
+})
+
+// Nishichujocho
+const nishichujocho = new Place ({
+    name: "Nishichujocho",
+    location: "Ibaraki, Osaka, Japan",
+    lat: -34.812803,
+    long: 135.562381,
+    markers: [
+        { x: 425, y: 710, text: ""}
+    ],
+    easterEggs: [],
+})
