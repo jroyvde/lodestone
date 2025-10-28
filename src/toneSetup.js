@@ -71,6 +71,8 @@ const ambience = new Tone.Players({
   onload: () => {
     Object.keys(ambiencePlayersUrls).forEach((name) => {
       ambience.player(`${name}`).loop = true;
+      ambience.player(`${name}`).fadeIn = 1;
+      ambience.player(`${name}`).fadeOut = 1;
     })
   }
 })
