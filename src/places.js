@@ -47,7 +47,7 @@ const pointOrmondLookout = new Place ({
     lat: -37.881933,
     long: 144.976311,
     markers: [
-        { x: 310, y: 710, text: ""}
+        { x: 310, y: 710, text: "There really is something different about this one."}
     ],
     easterEggs: [],
 })
@@ -119,7 +119,7 @@ const gardenBuilding = new Place ({
     lat: -37.808056,
     long: 144.964167,
     markers: [
-        { x: 425, y: 700, text: ""},
+        { x: 425, y: 700, text: "Happiness lives wherever you can dare to look for it."},
     ],
     easterEggs: [],
 }) // Check position
@@ -131,7 +131,7 @@ const universityOfMelbourne = new Place ({
     lat: -37.797975,
     long: 144.959711,
     markers: [
-        { x: 680, y: 675, text: ""}
+        { x: 680, y: 675, text: "It doesn't feel like the present anymore. When have I ended up?"}
     ],
     easterEggs: [],
 })
@@ -143,7 +143,7 @@ const royalExhibitionBuilding = new Place ({
     lat: -37.804711,
     long: 144.972508,
     markers: [
-        { x: 800, y: 610, text: ""}
+        { x: 800, y: 610, text: "Everything you know and love will be swallowed up in the end. Isn't it beautiful?"}
     ],
     easterEggs: [],
 })
@@ -155,8 +155,8 @@ const building8 = new Place ({
     lat: -37.807872,
     long: 144.963558,
     markers: [
-        { x: 705, y: 835, text: ""},
-        { x: 275, y: 640, text: ""},
+        { x: 705, y: 835, text: "Don't let your imagination be finite. Let it expand infinitely in every direction."},
+        { x: 275, y: 640, text: "Metamorphosis is the only constant. I am not me."},
         { x: 905, y: 705, text: "From roses, I weave my heart. I feel blue, but like the sky."}
     ],
     easterEggs: [],
@@ -169,7 +169,7 @@ const meatMarketStables = new Place ({
     lat: -37.801111,
     long: 144.953333,
     markers: [
-        { x: 770, y: 645, text: ""}
+        { x: 770, y: 645, text: "The bird could only see the feathers that didn't match. So he didn't join the flock."}
     ],
     easterEggs: [],
 })
@@ -181,7 +181,7 @@ const hawkeSt = new Place ({
     lat: -37.809167,
     long: 144.944444,
     markers: [
-        { x: 795, y: 590, text: ""}
+        { x: 795, y: 590, text: "A meaningless question with two answers. Either one only proves how weak I am."}
     ],
     easterEggs: [lollipop],
 })
@@ -193,7 +193,7 @@ const durhamRd = new Place ({
     lat: -37.834728,
     long: 145.089717,
     markers: [
-        { x: 245, y: 410, text: "Maybe I'm not so bad after all."}
+        { x: 245, y: 410, text: "Maybe I'm not so bad after all. Then again."}
     ],
     easterEggs: [prismCup],
 })
