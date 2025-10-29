@@ -50,15 +50,15 @@ export const Markers = ({ selectedPlace }) => {
             }} />
         )
     })
-    // Add all of the selectedPlace's Easter Eggs to the scene as well
-    selectedPlace.easterEggs.forEach(easterEgg => {
-        tempJSX.push(
-            <img src={easterEgg.img} alt={easterEgg.alt} key={easterEgg.alt} className="easter-egg" onClick={easterEgg.onClick} style={{
-            left: `${(easterEgg.pos.x / 1280) * 100}%`,
-            top: `${(easterEgg.pos.y / 960) * 100}%`,
-            }} />
-        )
-    })
+    // Add all of the selectedPlace's Easter Eggs to the scene as well (Disabled for now)
+    // selectedPlace.easterEggs.forEach(easterEgg => {
+    //     tempJSX.push(
+    //         <img src={easterEgg.img} alt={easterEgg.alt} key={easterEgg.alt} className="easter-egg" onClick={easterEgg.onClick} style={{
+    //         left: `${(easterEgg.pos.x / 1280) * 100}%`,
+    //         top: `${(easterEgg.pos.y / 960) * 100}%`,
+    //         }} />
+    //     )
+    // })
     setMarkersJSX(tempJSX)
   }, [textContent, textDisplay])
 
