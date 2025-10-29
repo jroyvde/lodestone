@@ -106,7 +106,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
     // Set the correct bitcrushing based on proximity
-    const crushBits = lerp(6, 10, places[newPlaceIndex].proximity)
+    const crushBits = lerp(6, 12, places[newPlaceIndex].proximity)
     setAmbienceCrush(crushBits)
     console.log(`New bits: ${crushBits}`)
   }
