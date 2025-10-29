@@ -9,6 +9,7 @@ import { places } from "./places"
 
 // Import components
 import { Prism } from "./Prism"
+import { Photo } from "./Photo"
 import { Markers } from "./Markers"
 
 // Import stylesheets
@@ -105,7 +106,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
     // Set the correct bitcrushing based on proximity
-    const crushBits = lerp(6, 10, places[newPlaceIndex].proximity)
+    const crushBits = lerp(6, 12, places[newPlaceIndex].proximity)
     setAmbienceCrush(crushBits)
     console.log(`New bits: ${crushBits}`)
   }
@@ -207,9 +208,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         <img src={`${import.meta.env.BASE_URL}assets/back.webp`} alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
-        <div id="photo" style={{ backgroundImage: `url("${selectedPlace.photo}")` }}>
-          <Markers selectedPlace={selectedPlace}/>
-        </div>
+        <Photo selectedPlace={selectedPlace} />
       </div>
     </>
   )

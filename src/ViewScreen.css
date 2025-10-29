@@ -27,6 +27,12 @@
     justify-content: center;
 }
 
+iframe {
+    border: 0;
+    height: 100%;
+    width: 100%;
+}
+
 #text {
     background-color: black;
     align-self: flex-end;
