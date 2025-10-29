@@ -5,7 +5,7 @@ export const Photo = ({ selectedPlace }) => {
     const patchRef = useRef(null)
 
     useEffect(() => {
-        // Handle when patch is ready
+        // Set variables in patch once it's ready
         window.patchInitialized = (patch) => {
             patchRef.current = patch
             if (patchRef.current) {
