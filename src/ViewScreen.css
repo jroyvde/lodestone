@@ -36,7 +36,7 @@ iframe {
 #text {
     background-color: black;
     align-self: flex-end;
-    width: min(80rem, calc(80% - 6rem));
+    width: min(80rem, calc(80% - 6rem), calc(80vw - 6rem));
     z-index: 2;
     padding: 2rem;
     margin: 1rem;
