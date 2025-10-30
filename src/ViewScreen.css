@@ -40,7 +40,7 @@ iframe {
     width: min(80rem, calc(80% - 6rem), calc(100vw - 6rem));
     z-index: 2;
     padding: 2rem;
-    margin: 2rem 2rem 6rem 2rem;
+    margin: 2rem;
     filter: drop-shadow(0 0 1rem black);
     position: absolute;
 }
