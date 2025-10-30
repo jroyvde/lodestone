@@ -28,7 +28,8 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
       <div id="intro-modal-background" onClick={ () => { setShowIntroModal(false) ; toneInit() ; playGrind() } }>
         <div id="intro-modal">
           <p>For the most complete experience, make sure your sound is on, and that you have given the website permission to access your location.</p>
-          <p>Your information will not be collected or recorded.</p>
+          <p>The website will also work on your mobile device, so feel free to take it with you.</p>
+          <p>Your location information will not be collected or recorded.</p>
           <p>Click anywhere to continue.</p>
         </div>
       </div>
