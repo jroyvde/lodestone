@@ -19,7 +19,7 @@ const MarkerText = ({ textDisplay, setTextDisplay, textContent }) => {
 export const Markers = ({ selectedPlace }) => {
   const [markersJSX, setMarkersJSX] = useState([])
   const [textDisplay, setTextDisplay] = useState(false)
-  const [textContent, setTextContent] = useState(selectedPlace.markers[0].text)
+  const [textContent, setTextContent] = useState("")
 
   // Function: Show a Marker's Text
   const showText = (markerText) => {
