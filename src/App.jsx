@@ -222,7 +222,7 @@ const App = () => {
   const [selectedPlace, setSelectedPlace] = useState(places[0])    // The Place currently highlighted/selected on the Map Screen
 
   const coordsRef = useRef(null)  // Store the user's coordinates
-  const testMode = useRef(false)  // Test Mode: Shows all Places as if at 100% Proximity
+  const testMode = useRef(true)  // Test Mode: Shows all Places as if at 100% Proximity
 
   const changeScreen = (screenInt) => {
     setPrevScreen(currentScreen)
