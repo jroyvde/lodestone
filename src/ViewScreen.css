@@ -15,17 +15,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: scroll;
 }
 
 #photo {
     position: relative;
-    height: 75vw;
-    width: 100vw;
+    width: 133.33vh;
+    height: 100%;
     background-position: center;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 iframe {
@@ -36,7 +38,6 @@ iframe {
 
 #text {
     background-color: black;
-    align-self: flex-end;
     width: min(80rem, calc(125vh - 4rem), calc(100vw - 8rem));
     z-index: 2;
     padding: 2rem;
