@@ -19,8 +19,8 @@
 
 #photo {
     position: relative;
-    height: calc(100vw * 0.75);
-    width: 100%;
+    height: 75vw;
+    width: 100vw;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -37,7 +37,7 @@ iframe {
 #text {
     background-color: black;
     align-self: flex-end;
-    width: min(80rem, calc(80% - 6rem), calc(100vw - 6rem));
+    width: min(80rem, calc(125vh - 4rem), calc(100vw - 8rem));
     z-index: 2;
     padding: 2rem;
     margin: 2rem;
