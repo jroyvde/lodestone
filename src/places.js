@@ -205,8 +205,8 @@ const oicSeminarHouse = new Place ({
     lat: -34.809931,
     long: 135.561622,
     markers: [
-        { x: 900, y: 850, text: ""},
-        { x: 1120, y: 530, text: ""},
+        // { x: 900, y: 850, text: ""},
+        // { x: 1120, y: 530, text: ""},
     ],
     easterEggs: [],
 })
@@ -218,8 +218,8 @@ const ritsumeikanUniversityOic = new Place ({
     lat: -34.80965,
     long: 135.561914,
     markers: [
-        { x: 960, y: 430, text: ""},
-        { x: 685, y: 565, text: ""}
+        // { x: 960, y: 430, text: ""},
+        // { x: 685, y: 565, text: ""}
     ],
     easterEggs: [],
 })
@@ -231,7 +231,7 @@ const kaikatsuClubTenrokuten = new Place ({
     lat: -34.710419,
     long: 135.510997,
     markers: [
-        { x: 445, y: 810, text: ""}
+        // { x: 445, y: 810, text: ""}
     ],
     easterEggs: [],
 })
@@ -243,7 +243,7 @@ const buildingH = new Place ({
     lat: -34.808792,
     long: 135.561694,
     markers: [
-        { x: 945, y: 670, text: ""}
+        // { x: 945, y: 670, text: ""}
     ],
     easterEggs: [],
 })
@@ -255,7 +255,7 @@ const nishichujocho = new Place ({
     lat: -34.812803,
     long: 135.562381,
     markers: [
-        { x: 425, y: 710, text: ""}
+        // { x: 425, y: 710, text: ""}
     ],
     easterEggs: [],
 })
