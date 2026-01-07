@@ -47,7 +47,7 @@ const pointOrmondLookout = new Place ({
     lat: -37.881933,
     long: 144.976311,
     markers: [
-        { x: 310, y: 710, text: "There really is something different about this one."}
+        { x: 310, y: 710, text: "There really is something different about this one." }
     ],
     easterEggs: [],
 })
@@ -59,7 +59,7 @@ const leBonTon = new Place ({
     lat: -37.804822,
     long: 144.988569,
     markers: [
-        { x: 480, y: 550, text: "It's over, isn't it."}
+        { x: 480, y: 550, text: "It's over, isn't it." }
     ],
     easterEggs: [],
 })
@@ -71,7 +71,7 @@ const royalBotanicGardensVictoria = new Place ({
     lat: -37.832047,
     long: 144.97855,
     markers: [
-        { x: 445, y: 720, text: "Can something already rotted away ever regain its form? If you wanted, you could have made me believe it."}
+        { x: 445, y: 720, text: "Can something already rotted away ever regain its form? If you wanted, you could have made me believe it." }
     ],
     easterEggs: [],
 })
@@ -83,7 +83,7 @@ const stKildaRd = new Place ({
     lat: -37.825328,
     long: 144.970986,
     markers: [
-        { x: 715, y: 405, text: "That last walk felt so long. Hand in hand, yet never further apart."}
+        { x: 715, y: 405, text: "That last walk felt so long. Hand in hand, yet never further apart." }
     ],
     easterEggs: [],
 })
@@ -95,7 +95,7 @@ const flindersStreetStation = new Place ({
     lat: -37.818153,
     long: 144.966561,
     markers: [
-        { x: 1200, y: 760, text: "When I looked up, I'd already seen her for the last time."}
+        { x: 1200, y: 760, text: "When I looked up, I'd already seen her for the last time." }
     ],
     easterEggs: [],
 })
@@ -119,7 +119,7 @@ const gardenBuilding = new Place ({
     lat: -37.808056,
     long: 144.964167,
     markers: [
-        { x: 425, y: 700, text: "Happiness lives wherever you can dare to look for it."},
+        { x: 425, y: 700, text: "Happiness lives wherever you can dare to look for it." },
     ],
     easterEggs: [],
 }) // Check position
@@ -131,7 +131,7 @@ const universityOfMelbourne = new Place ({
     lat: -37.797975,
     long: 144.959711,
     markers: [
-        { x: 680, y: 675, text: "It doesn't feel like the present anymore. When have I ended up?"}
+        { x: 680, y: 675, text: "It doesn't feel like the present anymore. When have I ended up?" }
     ],
     easterEggs: [],
 })
@@ -143,7 +143,7 @@ const royalExhibitionBuilding = new Place ({
     lat: -37.804711,
     long: 144.972508,
     markers: [
-        { x: 800, y: 610, text: "Everything you know and love will be swallowed up in the end. Isn't it beautiful?"}
+        { x: 800, y: 610, text: "Everything you know and love will be swallowed up in the end. Isn't it beautiful?" }
     ],
     easterEggs: [],
 })
@@ -155,9 +155,9 @@ const building8 = new Place ({
     lat: -37.807872,
     long: 144.963558,
     markers: [
-        { x: 705, y: 835, text: "Don't let your imagination be finite. Let it expand infinitely in every direction."},
-        { x: 275, y: 640, text: "Metamorphosis is the only constant. I am not me."},
-        { x: 905, y: 705, text: "From roses, I weave my heart. I feel blue, but like the sky."}
+        { x: 705, y: 835, text: "Don't let your imagination be finite. Let it expand infinitely in every direction." },
+        { x: 275, y: 640, text: "Metamorphosis is the only constant. I am not me." },
+        { x: 905, y: 705, text: "From roses, I weave my heart. I feel blue, but like the sky." }
     ],
     easterEggs: [],
 })
@@ -169,7 +169,7 @@ const meatMarketStables = new Place ({
     lat: -37.801111,
     long: 144.953333,
     markers: [
-        { x: 770, y: 645, text: "The bird could only see the feathers that didn't match. So he didn't join the flock."}
+        { x: 770, y: 645, text: "The bird could only see the feathers that didn't match. So he didn't join the flock." }
     ],
     easterEggs: [],
 })
@@ -181,7 +181,7 @@ const hawkeSt = new Place ({
     lat: -37.809167,
     long: 144.944444,
     markers: [
-        { x: 795, y: 590, text: "A meaningless question with two answers. Either one only proves how weak I am."}
+        { x: 795, y: 590, text: "A meaningless question with two answers. Either one only proves how weak I am." }
     ],
     easterEggs: [lollipop],
 })
@@ -193,22 +193,9 @@ const durhamRd = new Place ({
     lat: -37.834728,
     long: 145.089717,
     markers: [
-        { x: 245, y: 410, text: "Maybe I'm not so bad after all. Then again."}
+        { x: 245, y: 410, text: "Maybe I'm not so bad after all. Then again." }
     ],
     easterEggs: [prismCup],
-})
-
-// OIC Seminar House
-const oicSeminarHouse = new Place ({
-    name: "OIC Seminar House",
-    location: "Ibaraki, Osaka, Japan",
-    lat: -34.809931,
-    long: 135.561622,
-    markers: [
-        // { x: 900, y: 850, text: ""},
-        // { x: 1120, y: 530, text: ""},
-    ],
-    easterEggs: [],
 })
 
 // Ritsumeikan University Osaka Ibaraki Campus
@@ -218,8 +205,21 @@ const ritsumeikanUniversityOic = new Place ({
     lat: -34.80965,
     long: 135.561914,
     markers: [
-        // { x: 960, y: 430, text: ""},
-        // { x: 685, y: 565, text: ""}
+        { x: 960, y: 430, text: "" },
+        { x: 685, y: 565, text: "" }
+    ],
+    easterEggs: [],
+})
+
+// OIC Seminar House
+const oicSeminarHouse = new Place ({
+    name: "OIC Seminar House",
+    location: "Ibaraki, Osaka, Japan",
+    lat: -34.809931,
+    long: 135.561622,
+    markers: [
+        { x: 900, y: 850, text: "" },
+        { x: 1120, y: 530, text: "" },
     ],
     easterEggs: [],
 })
@@ -231,7 +231,7 @@ const kaikatsuClubTenrokuten = new Place ({
     lat: -34.710419,
     long: 135.510997,
     markers: [
-        // { x: 445, y: 810, text: ""}
+        { x: 445, y: 810, text: "" }
     ],
     easterEggs: [],
 })
@@ -243,7 +243,7 @@ const buildingH = new Place ({
     lat: -34.808792,
     long: 135.561694,
     markers: [
-        // { x: 945, y: 670, text: ""}
+        { x: 945, y: 670, text: "" }
     ],
     easterEggs: [],
 })
@@ -255,7 +255,43 @@ const nishichujocho = new Place ({
     lat: -34.812803,
     long: 135.562381,
     markers: [
-        // { x: 425, y: 710, text: ""}
+        { x: 425, y: 710, text: "" }
+    ],
+    easterEggs: [],
+})
+
+// Shirakawa Hachiman Shrine
+const shirakawaHachimanShrine = new Place ({
+    name: "Shirakawa Hachiman Shrine",
+    location: "Shirakawa, Gifu, Japan",
+    lat: -36.255483,
+    long: 136.905336,
+    markers: [
+        { x: 905, y: 835, text: "" }
+    ],
+    easterEggs: [],
+})
+
+// Roppongi Hills
+const roppongiHills = new Place ({
+    name: "Roppongi Hills",
+    location: "Minato, Tokyo, Japan",
+    lat: -35.661239,
+    long: 139.729664,
+    markers: [
+        { x: 965, y: 775, text: "" }
+    ],
+    easterEggs: [],
+})
+
+// Greeves St
+const greevesSt = new Place ({
+    name: "Greeves St",
+    location: "Fitzroy, Australia",
+    lat: 0,
+    long: 0,
+    markers: [
+       
     ],
     easterEggs: [],
 })
