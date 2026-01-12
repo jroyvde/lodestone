@@ -2,23 +2,28 @@ import { useState, useRef, useEffect } from 'react'
 
 // Import functions
 import { toneInit, playGrind, setGrindVol, playAmbience, stopAmbience, setAmbienceCrush, playSound, playTransNoise, stopTransNoise } from './toneSetup'
-import { wait, lerp } from "./helperFunctions"
+import { wait, lerp } from './helperFunctions'
 
 // Import Places
-import { places } from "./places"
+import { places } from './places'
 
 // Import components
-import { Prism } from "./Prism"
-import { Photo } from "./Photo"
-import { Markers } from "./Markers"
+import { Prism } from './Prism'
+import { Photo } from './Photo'
 
 // Import stylesheets
-import "normalize.css"
-import "./App.css"
-import "./PrismScreen.css"
-import "./MapScreen.css"
-import "./ViewScreen.css"
-import "./Prism.css"
+import 'normalize.css'
+import './App.css'
+import './PrismScreen.css'
+import './MapScreen.css'
+import './ViewScreen.css'
+import './Prism.css'
+
+// Import assets
+import leftImg from './assets/left.webp'
+import rightImg from './assets/right.webp'
+import goImg from './assets/go.webp'
+import backImg from './assets/back.webp'
 
 // Intro Modal
 const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
@@ -152,9 +157,9 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
         <h3 className={selectedPlace.active ? "grow" : ""}>PROXIMITY: {selectedPlace.active ? "100%" : `${(selectedPlace.proximity * 99).toFixed(0)}%`}</h3>
       </div>
       <div className="mapControls">
-          <img src={`${import.meta.env.BASE_URL}assets/left.webp`} alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
-          <img src={`${import.meta.env.BASE_URL}assets/go.webp`} alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
-          <img src={`${import.meta.env.BASE_URL}assets/right.webp`} alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
+          <img src={leftImg} alt="left" onClick={() => { playSound("nav") ; changePlace(-1) }}></img>
+          <img src={goImg} alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
+          <img src={rightImg} alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
       <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapSvg}")` }}>
         <div className="mapViewport">
@@ -205,7 +210,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         }}
        />
       <div id="viewControls">
-        <img src={`${import.meta.env.BASE_URL}assets/back.webp`} alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
+        <img src={backImg} alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
       </div>
       <div id="view-screen-container">
         <Photo selectedPlace={selectedPlace} />

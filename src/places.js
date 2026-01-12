@@ -12,6 +12,10 @@
 // ambience:    Ambience audio
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
+const ambienceGlob = import.meta.glob(`./assets/*_ambience.webm`, { eager: true, import: 'default' })
+const photosGlob = import.meta.glob(`./assets/*_photo.webp`, { eager: true, import: 'default' })
+const mapsGlob = import.meta.glob(`./assets/*_map.webp`, { eager: true, import: 'default' })
+
 import { lollipop, prismCup } from "./easterEggs"
 
 export const places = []
@@ -29,9 +33,9 @@ class Place {
         this.distance = null
         this.proximity = null
         this.active = false
-        this.photo = `${import.meta.env.BASE_URL}assets/${name}_photo.webp`
-        this.ambience = `${import.meta.env.BASE_URL}assets/${name}_ambience.webm`
-        this.mapSvg = `${import.meta.env.BASE_URL}assets/${name}_map.webp` // Using webp for now to avoid performance issues with svg
+        this.photo = photosGlob[`./assets/${name}_photo.webp`]
+        this.ambience = ambienceGlob[`./assets/${name}_ambience.webm`]
+        this.mapSvg = mapsGlob[`./assets/${name}_map.webp`] // Using webp for now to avoid performance issues with svg
         // Push to array
         places.push(this)
         // Add ambience to the Tone Players config
