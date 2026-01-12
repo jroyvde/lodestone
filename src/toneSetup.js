@@ -144,9 +144,9 @@ export const toneInit = () => {
   // The sampler above must be uncommented for this to work, as well as the declaration on line 3 of keyboardController.js
   // sampler.chain(filter, distortion, meter, Tone.Destination)
   boop.chain(Tone.getDestination())
-  grind.chain(grindPitch, grindFilter, grindCrush, grindVolume, Tone.getDestination())
-  trans.chain(transCrush, transVolume, Tone.getDestination())
-  ambience.chain(ambienceCrush, ambienceVolume, Tone.getDestination())
+  grind.chain(grindPitch, grindFilter, /*grindCrush, */grindVolume, Tone.getDestination())
+  trans.chain(/*transCrush, */transVolume, Tone.getDestination())
+  ambience.chain(/*ambienceCrush, */ambienceVolume, Tone.getDestination())
 }
 
 export const playGrind = () => {
