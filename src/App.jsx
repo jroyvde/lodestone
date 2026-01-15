@@ -282,6 +282,10 @@ const App = () => {
 
   useEffect(() => {
     if (imagesLoaded.current === false) {
+      preloadImage(leftImg)
+      preloadImage(rightImg)
+      preloadImage(goImg)
+      preloadImage(backImg)
       Object.values(mapsGlob).forEach(src => {
         preloadImage(src)
       })
