@@ -2,10 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 
 // Import functions
 import { toneInit, playGrind, setGrindVol, playAmbience, stopAmbience, setAmbienceCrush, playSound, playTransNoise, stopTransNoise } from './toneSetup'
-import { wait, lerp } from './helperFunctions'
+import { wait, lerp, preloadImage } from './helperFunctions'
 
 // Import Places
-import { places } from './places'
+import { places, mapsGlob } from './places'
 
 // Import components
 import { Prism } from './Prism'
@@ -228,6 +228,7 @@ const App = () => {
 
   const coordsRef = useRef(null)  // Store the user's coordinates
   const testMode = useRef(false)  // Test Mode: Shows all Places as if at 100% Proximity
+  const imagesLoaded = useRef(false)
 
   const changeScreen = (screenInt) => {
     setPrevScreen(currentScreen)
@@ -278,6 +279,15 @@ const App = () => {
       calcProximities()
     })
   }
+
+  useEffect(() => {
+    if (imagesLoaded.current === false) {
+      Object.values(mapsGlob).forEach(src => {
+        preloadImage(src)
+      })
+    }
+    imagesLoaded.current = true
+  })
 
   switch (currentScreen) {
     case 0:

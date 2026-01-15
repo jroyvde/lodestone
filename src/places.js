@@ -13,7 +13,7 @@
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 const ambienceGlob = import.meta.glob(`./assets/*_ambience.webm`, { eager: true, import: 'default' })
-const mapsGlob = import.meta.glob(`./assets/*_map.webp`, { eager: true, import: 'default' })
+export const mapsGlob = import.meta.glob(`./assets/*_map.webp`, { eager: true, import: 'default' })
 
 import { lollipop, prismCup } from "./easterEggs"
 
