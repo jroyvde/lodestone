@@ -13,7 +13,6 @@
 // mapImg:      Image displayed on the Map Screen (Possibly temporary)
 
 const ambienceGlob = import.meta.glob(`./assets/*_ambience.webm`, { eager: true, import: 'default' })
-const photosGlob = import.meta.glob(`./assets/*_photo.webp`, { eager: true, import: 'default' })
 const mapsGlob = import.meta.glob(`./assets/*_map.webp`, { eager: true, import: 'default' })
 
 import { lollipop, prismCup } from "./easterEggs"
@@ -33,7 +32,7 @@ class Place {
         this.distance = null
         this.proximity = null
         this.active = false
-        this.photo = photosGlob[`./assets/${name}_photo.webp`]
+        this.photo = `/lodestone-photo/assets/${name.replaceAll(' ', '_')}_photo.webp`
         this.ambience = ambienceGlob[`./assets/${name}_ambience.webm`]
         this.mapSvg = mapsGlob[`./assets/${name}_map.webp`] // Using webp for now to avoid performance issues with svg
         // Push to array
