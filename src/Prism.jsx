@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-export const Prism = ({ currentScreen, onClick }) => {
+export const Prism = ({ currentScreen, prevScreen, onClick }) => {
     // Prism Reference
     const prismRef = useRef(null)
 

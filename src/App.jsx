@@ -47,12 +47,13 @@ const IntroModal = ({ showIntroModal, setShowIntroModal }) => {
 
 // Screen 0: Prism
 const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, setShowIntroModal }) => {
-  // Enter the Prism and transition to the Map Screen
+  // Function: Enter the Prism and transition to the Map Screen
   const enterPrism = async () => {
     const prism = document.querySelector("#prism")
     const prismOverlay = document.querySelector("#prism-screen-overlay")
     console.log("Entering the Prism")
     // Zoom in
+    prism.style.setProperty("transition", "scale 5s ease-in")
     prism.style.setProperty("scale", "10.0")
     prismOverlay.style.setProperty("opacity", "1.0")
     // Play sound
@@ -63,19 +64,26 @@ const PrismScreen = ({ changeScreen, currentScreen, prevScreen, showIntroModal, 
     changeScreen(1)
   }
 
-  stopTransNoise()
-  setGrindVol(-6)
+  const playInitialAnim = async () => {
+    const prism = document.querySelector("#prism")
+    prism.style.setProperty("transition", "scale 0s")
+    prism.style.setProperty("scale", "5.0")
+    await wait (10)
+    prism.style.setProperty("transition", "scale 1s ease-out")
+    prism.style.setProperty("scale", "1.0")
+  }
 
-  // Restore normal zoom if zoomed in
   useEffect(() => {
-    document.querySelector("main").style.setProperty("scale", "1.0")
-  })
+    stopTransNoise()
+    setGrindVol(-6)
+    if (prevScreen > currentScreen) playInitialAnim()
+  }, [])
 
   return(
     <>
       <IntroModal showIntroModal={showIntroModal} setShowIntroModal={setShowIntroModal} />
       <div id="prism-screen-overlay"></div>
-      <Prism onClick={enterPrism} currentScreen={currentScreen}/>
+      <Prism onClick={enterPrism} currentScreen={currentScreen} prevScreen={prevScreen}/>
     </>
   )
 }
@@ -97,9 +105,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     setOverlayColor("var(--prism-base-color)")
     setOverlayActive(true)
     // Wait
-    await wait(1000)
-    document.querySelector("main").style.setProperty("scale", "10.0")
-    await wait(1000)
+    await wait(2000)
     // Change Screen
     changeScreen(0)
   }
@@ -132,7 +138,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   const enterPlace = async (place) => {
     console.log(`Entering: ${place.name}`)
     // Zoom in on the Map
-    mapRef.current.zoomTo(24, {
+    mapRef.current?.zoomTo(27, {
       duration: 2000
     })
     setOverlayColor("black")
@@ -141,8 +147,19 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     changeScreen(2)
   }
 
-  setGrindVol(-12)                  // Set volume of grinding sound
-  stopAmbience(selectedPlace.name)  // Stop View Screen ambience if playing
+  // Function: Runs on component load if coming from the Place Screen
+  const zoomOut = async () => {
+    await wait(10)
+    mapRef.current.zoom = 27
+    mapRef.current?.zoomTo(17, {
+      duration: 2000
+    })
+  }
+
+  useEffect(() => {
+    setGrindVol(-12)                  // Set volume of grinding sound
+    stopAmbience(selectedPlace.name)  // Stop View Screen ambience if playing
+  }, [])
 
   // Play the transition-in effect
   useEffect(() => {
@@ -154,8 +171,8 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     setOverlayActive(false)
     // Stop transition sound
     stopTransNoise()
-    // Restore normal zoom if zoomed in
-    document.querySelector("main").style.setProperty("scale", "1.0")
+    // Play 'zoom out' animation if coming from a Place
+    if (prevScreen > currentScreen) zoomOut()
   }, [])
   
   return(
@@ -180,7 +197,7 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
         initialViewState={{
           longitude: selectedPlace.long,
           latitude: selectedPlace.lat,
-          zoom: 14,
+          zoom: prevScreen === 2 ? 27 : 17,
           interactive: false,
           attributionControl: false
         }}
@@ -203,16 +220,13 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
     // Do animations
     setOverlayActive("true")
     // Wait
-    await wait(1000)
-    document.querySelector("main").style.setProperty("scale", "10.0")
-    await wait(1000)
+    await wait(2000)
     // Change Screen
     changeScreen(1)
   }
 
   // Play the transition-in effect
   useEffect(() => {
-    document.querySelector("main").style.setProperty("scale", "1.0")
     const timer = setTimeout(() => setOverlayActive(false), 1000)
     return () => clearTimeout(timer)
   }, [])
