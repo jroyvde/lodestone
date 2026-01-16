@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 
+import Map from 'react-map-gl/maplibre'
+import 'maplibre-gl/dist/maplibre-gl.css'
+
 // Import functions
 import { toneInit, playGrind, setGrindVol, playAmbience, stopAmbience, setAmbienceCrush, playSound, playTransNoise, stopTransNoise } from './toneSetup'
 import { wait, lerp, preloadImage } from './helperFunctions'
@@ -82,6 +85,8 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   const [overlayActive, setOverlayActive] = useState(true)
   const [overlayColor, setOverlayColor] = useState("var(--prism-base-color)")
 
+  const mapRef = useRef(null) // Ref for interacting with the MapLibre GL JS map
+
   // Function: Return to the Prism Screen
   const exitPrism = async () => {
     console.log("Returning to the Prism Screen")
@@ -110,6 +115,13 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
     // Set the new Place
     setSelectedPlace(places[newPlaceIndex])
     console.log(`Selected Place is now ${JSON.stringify(places[newPlaceIndex])} (Index: ${newPlaceIndex})`)
+    // Fly to the new place's location on the Map
+    mapRef.current?.flyTo({
+      center: [places[newPlaceIndex].long, places[newPlaceIndex].lat],
+      zoom: 17,
+      duration: 2000,
+      essential: true
+    })
     // Set the correct bitcrushing based on proximity
     const crushBits = lerp(6, 12, places[newPlaceIndex].proximity)
     setAmbienceCrush(crushBits)
@@ -119,15 +131,18 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
   // Function: Enter the selected Place, proceeding to the View Screen
   const enterPlace = async (place) => {
     console.log(`Entering: ${place.name}`)
-    document.querySelector("main").style.setProperty("scale", "15.0")
+    // Zoom in on the Map
+    mapRef.current.zoomTo(24, {
+      duration: 2000
+    })
     setOverlayColor("black")
     setOverlayActive("true")
     await wait(1000)
     changeScreen(2)
   }
 
-  setGrindVol(-12)  // Set volume of grinding sound
-  stopAmbience(selectedPlace.name)    // Stop View Screen ambience if playing
+  setGrindVol(-12)                  // Set volume of grinding sound
+  stopAmbience(selectedPlace.name)  // Stop View Screen ambience if playing
 
   // Play the transition-in effect
   useEffect(() => {
@@ -161,13 +176,19 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
           <img src={goImg} alt="go" onClick={() => { playSound("go") ; enterPlace(selectedPlace) }}></img>
           <img src={rightImg} alt="right" onClick={() => { playSound("nav") ; changePlace(1) }}></img>
       </div>
-      <div className="mapScreenContainer" style={{ backgroundImage: `url("${selectedPlace.mapSvg}")` }}>
-        <div className="mapViewport">
-
-        </div>
-        <div className="bottomBar">
-          <Prism onClick={exitPrism} currentScreen={currentScreen}/>
-        </div>
+      <Map ref={mapRef}
+        initialViewState={{
+          longitude: selectedPlace.long,
+          latitude: selectedPlace.lat,
+          zoom: 14,
+          interactive: false,
+          attributionControl: false
+        }}
+        style={{zIndex: -10}}
+        mapStyle='https://tiles.openfreemap.org/styles/bright'
+       />
+      <div className="bottomBar">
+        <Prism onClick={exitPrism} currentScreen={currentScreen}/>
       </div>
     </>
   )

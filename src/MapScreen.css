@@ -19,17 +19,9 @@
     pointer-events: none;
 }
 
-.mapScreenContainer {
-    width: 100%;
+.maplibregl-map {
+    position: absolute !important;
     height: 100%;
-    display: grid;
-    grid-template: auto 15rem / 100%;
-    grid-template-areas:
-    "mapViewport"
-    "bottomBar";
-    background-image: url('./assets/map0.png');
-    background-position: center;
-    background-size: cover;
 }
 
 .mapTitle {
@@ -100,10 +92,14 @@
     width: 100%;
     display: flex;
     align-items: center;
+    position: absolute;
+    bottom: env(safe-area-inset-bottom);
+    pointer-events: none;
 }
 
 .bottomBar #prism-container {
     justify-self: flex-start;
+    pointer-events: all;
 }
 
 @media (max-width: 1200px) {

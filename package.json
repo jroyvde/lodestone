@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "maplibre-gl": "^5.16.0",
     "netlify-cli": "^23.5.1",
     "normalize.css": "^8.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-map-gl": "^8.1.0",
     "tone": "^15.1.22"
   },
   "devDependencies": {
