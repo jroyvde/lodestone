@@ -8,16 +8,6 @@
     pointer-events: none;
 }
 
-#view-screen-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: scroll;
-}
-
 #photo {
     position: relative;
     width: 133.33vh;
@@ -28,6 +18,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
 }
 
 iframe {
@@ -40,7 +31,7 @@ iframe {
 #text {
     background-color: black;
     width: min(80rem, calc(125vh - 4rem), calc(100vw - 8rem));
-    z-index: 2;
+    z-index: 3;
     padding: 2rem;
     margin: 2rem 2rem 8rem 2rem;
     filter: drop-shadow(0 0 1rem black);
@@ -63,6 +54,7 @@ iframe {
     margin-left: 0.5rem;
     vertical-align: top;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .marker, .easter-egg {
@@ -71,6 +63,7 @@ iframe {
     z-index: 1;
     height: 15rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     image-rendering: smooth;
     transform: translate(-50%, -100%);
     transition: scale 1s cubic-bezier(0.95, 0.05, 0.8, -0.5);
@@ -93,19 +86,40 @@ iframe {
   50% { scale: 1.25; }
 }
 
-#viewControls {
-    width: 25%;
+.controls-back, .controls-pan {
+    width: 100%;
     position: absolute;
     top: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    z-index: 2;
+        touch-action: none;
+    -webkit-touch-callout: none;
+    user-select: none;
 }
 
-#viewControls > img {
+.controls-pan {
+    top: calc(50% - 2.5rem);
+    justify-content: space-between;
+}
+
+.controls-back > button, .controls-pan > button {
+    background-color: transparent;
+    border: none;
     width: 5rem;
     height: 5rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     filter: drop-shadow(0 0 1rem black);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button > img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }

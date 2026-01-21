@@ -215,6 +215,9 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
 const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) => {
   const [overlayActive, setOverlayActive] = useState(true)
 
+  const photoRef = useRef(null)
+  const panAngleRef = useRef (0)
+
   // Function: Return to the Map Screen
   const returnToMapScreen = async () => {
     // Do animations
@@ -223,6 +226,31 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
     await wait(2000)
     // Change Screen
     changeScreen(1)
+  }
+
+  let panInterval
+
+  // Function: Pan the view
+  const pan = (direction) => {
+    switch (direction) {
+      case 'left':
+        panAngleRef.current = panAngleRef.current + 1
+        break
+      case 'right':
+        panAngleRef.current = panAngleRef.current - 1
+        break
+    }
+    document.getElementById('photo').style.setProperty('left', `${panAngleRef.current}px`)
+    console.log(panAngleRef.current)
+  }
+
+  const startPan = (direction) => {
+    pan(direction)
+    panInterval = setInterval(() => pan(direction), 1)
+  }
+
+  const stopPan = () => {
+    clearInterval(panInterval)
   }
 
   // Play the transition-in effect
@@ -244,12 +272,21 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
           opacity: overlayActive ? 1 : 0,
         }}
        />
-      <div id="viewControls">
-        <img src={backImg} alt="back" onClick={() => { playSound("back") ; returnToMapScreen() }} />
+      <div className="controls-back">
+        <button onClick={() => { playSound("back") ; returnToMapScreen() }}>
+          <img src={backImg} alt="back" />
+        </button>
+        
       </div>
-      <div id="view-screen-container">
-        <Photo selectedPlace={selectedPlace} />
+      <div className="controls-pan">
+        <button onPointerDown={() => startPan('left')} onPointerUp={() => stopPan()} onPointerCancel={() => stopPan()} onPointerLeave={() => stopPan()}>
+          <img src={leftImg} alt="back" />
+        </button>
+        <button onPointerDown={() => startPan('right')} onPointerUp={() => stopPan()} onPointerCancel={() => stopPan()} onPointerLeave={() => stopPan()}>
+           <img src={rightImg} alt="back" />
+        </button>
       </div>
+      <Photo ref={photoRef} selectedPlace={selectedPlace} />
     </>
   )
 }
