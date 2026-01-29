@@ -10,7 +10,7 @@
 
 #photo {
     position: relative;
-    width: 133.33vh;
+    width: 133.33dvh;
     height: 100%;
     background-position: center;
     background-size: cover;
@@ -30,7 +30,7 @@ iframe {
 
 #text {
     background-color: black;
-    width: min(80rem, calc(125vh - 4rem), calc(100vw - 8rem));
+    width: min(80rem, calc(125dvh - 4rem), calc(100dvw - 8rem));
     z-index: 3;
     padding: 2rem;
     margin: 2rem 2rem 8rem 2rem;

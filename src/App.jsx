@@ -214,9 +214,10 @@ const MapScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace, set
 // Screen 2: View
 const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) => {
   const [overlayActive, setOverlayActive] = useState(true)
+  const [panArrowsDisplay, setPanArrowsDisplay] = useState('none')
 
   const photoRef = useRef(null)
-  const panAngleRef = useRef (0)
+  const panAngleRef = useRef(0)
 
   // Function: Return to the Map Screen
   const returnToMapScreen = async () => {
@@ -232,15 +233,21 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
 
   // Function: Pan the view
   const pan = (direction) => {
+    const photoElem = document.getElementById('photo')
+    const rootElem = document.getElementById('root')
     switch (direction) {
       case 'left':
-        panAngleRef.current = panAngleRef.current + 1
+        if (panAngleRef.current < ((parseInt(getComputedStyle(photoElem).width) - parseInt(getComputedStyle(rootElem).width)) / 2)) {
+          panAngleRef.current = panAngleRef.current + 1
+        }
         break
       case 'right':
-        panAngleRef.current = panAngleRef.current - 1
+        if (panAngleRef.current > ((parseInt(getComputedStyle(photoElem).width) - parseInt(getComputedStyle(rootElem).width)) / 2) * -1) {
+          panAngleRef.current = panAngleRef.current - 1
+        }
         break
     }
-    document.getElementById('photo').style.setProperty('left', `${panAngleRef.current}px`)
+    photoElem.style.setProperty('left', `${panAngleRef.current}px`)
     console.log(panAngleRef.current)
   }
 
@@ -253,7 +260,16 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
     clearInterval(panInterval)
   }
 
-  // Play the transition-in effect
+  // Effect: Make the Pan Arrows visible if the photo is wider than the viewport
+  useEffect(() => {
+    const photoElem = document.getElementById('photo')
+    const rootElem = document.getElementById('root')
+    if (parseInt(getComputedStyle(photoElem).width) > parseInt(getComputedStyle(rootElem).width)) {
+      setPanArrowsDisplay('flex')
+    }
+  }, [])
+
+  // Effect: Play the transition-in effect
   useEffect(() => {
     const timer = setTimeout(() => setOverlayActive(false), 1000)
     return () => clearTimeout(timer)
@@ -263,7 +279,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
     setGrindVol(-36)  // Set volume of grinding sound
     console.log(`selected place name should be ${selectedPlace.name}`)
     if (!overlayActive) playAmbience(selectedPlace.name)    // Start playing the new ambience
-  })
+  }, [])
   
   return(
     <>
@@ -278,7 +294,7 @@ const ViewScreen = ({ changeScreen, currentScreen, prevScreen, selectedPlace }) 
         </button>
         
       </div>
-      <div className="controls-pan">
+      <div className="controls-pan" style={{ display: panArrowsDisplay }}>
         <button onPointerDown={() => startPan('left')} onPointerUp={() => stopPan()} onPointerCancel={() => stopPan()} onPointerLeave={() => stopPan()}>
           <img src={leftImg} alt="back" />
         </button>
